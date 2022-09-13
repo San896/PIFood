@@ -29,7 +29,7 @@ module.exports = (sequelize) => {
     },
     stepByStep: {
       type: DataTypes.STRING,
-      allowNull: true,
+      // type: DataTypes.ARRAY(DataTypes.STRING(65535)), // es un arreglo de strings
     },
     createdInDb: {
       type: DataTypes.BOOLEAN,

@@ -56,6 +56,7 @@ const allFromApi = async () => {
     const getAllApi = await axios(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`)
     const mapApi = await getAllApi.data.results.map(e => {
         return {
+            id: e.id,
             name: e.title,
             img: e.image,
             plateType: e.dishTypes,
@@ -71,9 +72,29 @@ const allFromApi = async () => {
             })
         }
     })
-    if(getAllApi){
-        return getAllApi
+    if(mapApi){
+        return mapApi
     }
+    throw new Error('error en allfromapi')
+}
+
+
+const allFromDb = async () => {
+    const allDb = await Recipe.findAll()
+    if(allDb){
+        return allDb
+    }
+    throw new Error('error en allfromdb')
+}
+
+const allFromAll = async () => {
+    const apiAll = await allFromApi
+    const dbAll = await allFromDb
+    const joinAll = await apiAll.concat(dbAll)
+    if(joinAll){
+        return joinAll
+    }
+    throw new Error('error en allfromall')
 }
 
 
@@ -87,7 +108,8 @@ router.get('/', async (req, res) =>{
                 return res.json(apiName)
             }
         }
-        return res.json()
+        const resAll = await allFromAll()
+        return res.json(resAll)
         
 
     } catch (e) {
@@ -101,31 +123,59 @@ router.get('/', async (req, res) =>{
 // Debe traer solo los datos pedidos en la ruta de detalle de receta
 // Incluir los tipos de dieta asociados
 const getIdApi = async (id) =>{
-    const axiosApi = await axios(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&number=30`)
-    console.log(axiosApi, 'axiooooooos')
-    const findApi = await axiosApi.data.results.find(e => e.id === Number(id))
-    console.log(findApi, 'apiiiiiiiii')
-    if(findApi){
-        return findApi
+    // const axiosApi = await axios(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY}`)
+    // 
+    // if(axiosApi){
+        // const e = axiosApi
+        // return {
+        //     id: e.id,
+        //     name: e.title,
+        //     img: e.image,
+        //     plateType: e.dishTypes,
+        //     dietType: e.diets,
+        //     resume: e.summary,
+        //     healthScore,
+        //     stepByStep: e.analyzedInstructions[0].steps.map(e => {
+        //         return {
+        //             number: e.number,
+        //             step: e.step,
+        //             ingredients: e.ingredients.map(e => e.name)
+        //         }
+        //     })
+        // }
+    //    
+    // }
+    const findApi = await allFromApi()
+    const findId = await findApi.find(e => e.id === id)
+    if(findId){
+        return findId
     }
 }
-// const getIdDb = async (id) =>{
 
-// }
+const getIdDb = async (id) =>{
+    const findDbId = await Type.findByPk(id)
+    if(findDbId){
+        return findDbId
+    }
+    throw new Error('error en getIdDb')
+}
 
 
-const searchById = async (id) =>{
+const searchAllById = async (id) =>{
     const fromApi = await getIdApi(id)
-    console.log(fromApi, 'aaaaaaaapi')
-    //const fromDb = await getIdDb(id)
-    if(fromApi) return fromApi
-    //falta de la db y error sino encuentra
+    if(fromApi){
+        return fromApi
+    }
+    const fromDb = await getIdDb(id)
+    if(fromDb){
+        return fromDb
+    }
 }
 
 router.get('/:idReceta', async (req, res) =>{
     try {
     const  id  = req.params.idReceta
-    const getById = await searchById(id)
+    const getById = await searchAllById(id)
     if(getById){
         return res.json(getById)
     }
@@ -145,19 +195,35 @@ router.get('/:idReceta', async (req, res) =>{
 // [ ] Posibilidad de seleccionar/agregar uno o más tipos de dietas
 router.post('/', async (req, res) =>{
     const { name, resume, healthScore, stepByStep, types, img } = req.body
+    console.log(name, 'aaaaaaaa')
     try {
-        if(!name || !resume || !healthScore || !!stepByStep || !types ){
+        if(!name || !resume || !healthScore || !stepByStep || !types  ){
             throw new Error("Missing required fields!");
         }
-        if(!Array.isArray(stepByStep) || !stepByStep.length){
-            throw new Error("Invalid steps");
-        }
+        // if(!Array.isArray(stepByStep) || !stepByStep.length){
+        //     throw new Error("Invalid steps");
+        // }
         if(!Array.isArray(types) || !types.length){
             throw new Error("Invalid types");
         }
+        const createRecipe = await Recipe.create({
+            name: name.toLowerCase(),
+            resume,
+            healthScore,
+            stepByStep,
+            types, 
+            img
+        })
+        const findTypes = await Type.findAll({
+            where: {name: types}
+        })
+        
+        createRecipe.addTipo(findTypes)
+        return res.status(200).json(createRecipe)
 
     } catch (e) {
-        
+        res.status(405).send(e)
+        //return res.status(404).send('failed creating recipe')
     }
 
 })

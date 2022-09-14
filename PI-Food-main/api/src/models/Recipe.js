@@ -21,7 +21,6 @@ module.exports = (sequelize) => {
     resume: {
       type: DataTypes.STRING,
       allowNull: false,
-      allowNull: true,
     },
     healthScore: {
       type: DataTypes.INTEGER,
@@ -29,12 +28,16 @@ module.exports = (sequelize) => {
     },
     stepByStep: {
       type: DataTypes.STRING,
-      // type: DataTypes.ARRAY(DataTypes.STRING(65535)), // es un arreglo de strings
+      //type: DataTypes.ARRAY(DataTypes.STRING(65535)), // es un arreglo de string
+      allowNull: true,
     },
     createdInDb: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
       defaultValue: true,
     }
+  },{
+
+    timestamps: false
   });
 };

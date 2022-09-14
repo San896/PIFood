@@ -4,6 +4,7 @@ const axios = require('axios');
 const router = Router();
 const { API_KEY } = process.env
 require("dotenv").config(); // ver para que eera
+const { Op } = require("sequelize");
 
 
 // GET https://api.spoonacular.com/recipes/complexSearch
@@ -19,10 +20,11 @@ require("dotenv").config(); // ver para que eera
 const searchName = async (name) => { 
        const getApi = await axios(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&number=30`)
        const filtResults = getApi.data.results.filter(e => e.title.toLowerCase().includes(name.toLowerCase()))
-       console.log(filtResults, 'filtresults')
+       
        if(filtResults.length === 0){
-           return new Error('faileeed')
+           return new Error('name does not exist in api')
     }
+   
     return filtResults
 }
 
@@ -30,7 +32,6 @@ const searchNameDb = async (name) => {
     const getDb = await Recipe.findAll({
         where: { name: {[Op.iLike]: `%${name}%`} }, include: [{model: Type }] 
     });
-    console.log(getDb, 'dbname')
     if(getDb.length > 0) {
         return getDb
     }
@@ -39,48 +40,49 @@ const searchNameDb = async (name) => {
 const searchNameAll = async (name) => {
     const nameApi = await searchName(name)
     const nameDb = await searchNameDb(name)
-    console.log(nameApi, 'aaaaaaaaa')
-    if(nameApi) {
+    const nameDb2 = await nameDb.dataValues
+    console.log(nameApi, 'apiiiiiiiiiii')
+    if(nameApi.name === name) {
         return nameApi
     } 
-    if(nameDb) {
-        return nameDb
+    if(nameDb2.name === name) {
+        return nameDb2
     }
     else{
-        return 'failed'
+        return 'name not found'
     }
     
 }
-
+// cambiar cantidad a 100 para presentar !!
 const allFromApi = async () => { 
-    const getAllApi = await axios(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`)
-    const mapApi = await getAllApi.data.results.map(e => {
-        return {
+    const getAllApi = await axios(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=30`)
+
+    const aux =  getAllApi.data.results
+    const mapAux = await aux.map(e => {
+        const obj = {
             id: e.id,
             name: e.title,
             img: e.image,
             plateType: e.dishTypes,
-            dietType: e.diets,
+            diets: e.diets,
             resume: e.summary,
-            healthScore,
-            stepByStep: e.analyzedInstructions[0].steps.map(e => {
-                return {
-                    number: e.number,
-                    step: e.step,
-                    ingredients: e.ingredients.map(e => e.name)
-                }
-            })
+            healthScore: e.healthScore,
+            stepByStep: e.analyzedInstructions[0]?.steps.map(el => el),
         }
-    })
-    if(mapApi){
-        return mapApi
+        return obj
+})
+
+    if(mapAux){
+        return mapAux
     }
     throw new Error('error en allfromapi')
 }
 
 
 const allFromDb = async () => {
-    const allDb = await Recipe.findAll()
+    const allDb = await Recipe.findAll({
+        include: Type,
+    })
     if(allDb){
         return allDb
     }
@@ -88,8 +90,8 @@ const allFromDb = async () => {
 }
 
 const allFromAll = async () => {
-    const apiAll = await allFromApi
-    const dbAll = await allFromDb
+    const apiAll = await allFromApi()
+    const dbAll = await allFromDb()
     const joinAll = await apiAll.concat(dbAll)
     if(joinAll){
         return joinAll
@@ -102,13 +104,14 @@ router.get('/', async (req, res) =>{
     const { name } = req.query
     try {
         if(name){
-            const apiName = await searchNameAll(name)
-            console.log(apiName, 'apiname')
-            if(apiName.length > 0){
-                return res.json(apiName)
+            const apiName = await searchNameAll(name)   
+            console.log(apiName, 'eeeeeeeee')     
+            if(apiName){
+                return res.status(202).json(apiName)
             }
         }
         const resAll = await allFromAll()
+        
         return res.json(resAll)
         
 
@@ -123,33 +126,26 @@ router.get('/', async (req, res) =>{
 // Debe traer solo los datos pedidos en la ruta de detalle de receta
 // Incluir los tipos de dieta asociados
 const getIdApi = async (id) =>{
-    // const axiosApi = await axios(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY}`)
-    // 
-    // if(axiosApi){
-        // const e = axiosApi
-        // return {
-        //     id: e.id,
-        //     name: e.title,
-        //     img: e.image,
-        //     plateType: e.dishTypes,
-        //     dietType: e.diets,
-        //     resume: e.summary,
-        //     healthScore,
-        //     stepByStep: e.analyzedInstructions[0].steps.map(e => {
-        //         return {
-        //             number: e.number,
-        //             step: e.step,
-        //             ingredients: e.ingredients.map(e => e.name)
-        //         }
-        //     })
-        // }
-    //    
-    // }
-    const findApi = await allFromApi()
-    const findId = await findApi.find(e => e.id === id)
-    if(findId){
-        return findId
+    const axiosApi = await axios(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY}`)
+    const e = await axiosApi.data
+    
+    const object = {
+            id: e.id,
+            name: e.title,
+            img: e.image,
+            plateType: e.dishTypes,
+            dietType: e.diets,
+            resume: e.summary,
+            healthScore: e.healthScore,
+            stepByStep: e.analyzedInstructions[0]?.steps.map(el => el),
     }
+    console.log(object, 'oooooooooo')
+    return object
+    // const findApi = await allFromApi
+    // const findId = await findApi.find(e => e.id === id)
+    // if(findId){
+    //     return findId
+    // }
 }
 
 const getIdDb = async (id) =>{
@@ -174,7 +170,7 @@ const searchAllById = async (id) =>{
 
 router.get('/:idReceta', async (req, res) =>{
     try {
-    const  id  = req.params.idReceta
+     const  id  = req.params.idReceta
     const getById = await searchAllById(id)
     if(getById){
         return res.json(getById)
@@ -193,33 +189,25 @@ router.get('/:idReceta', async (req, res) =>{
 // Nivel de "comida saludable" (health score)
 // Paso a paso
 // [ ] Posibilidad de seleccionar/agregar uno o más tipos de dietas
+
+
 router.post('/', async (req, res) =>{
     const { name, resume, healthScore, stepByStep, types, img } = req.body
-    console.log(name, 'aaaaaaaa')
     try {
-        if(!name || !resume || !healthScore || !stepByStep || !types  ){
-            throw new Error("Missing required fields!");
-        }
-        // if(!Array.isArray(stepByStep) || !stepByStep.length){
-        //     throw new Error("Invalid steps");
-        // }
-        if(!Array.isArray(types) || !types.length){
-            throw new Error("Invalid types");
-        }
-        const createRecipe = await Recipe.create({
-            name: name.toLowerCase(),
+        const createR = await Recipe.create({
+            name,
             resume,
             healthScore,
             stepByStep,
             types, 
-            img
-        })
+            img, 
+        }) 
         const findTypes = await Type.findAll({
             where: {name: types}
         })
         
-        createRecipe.addTipo(findTypes)
-        return res.status(200).json(createRecipe)
+        await createR.addType(findTypes)
+        return res.status(200).send('created succesfully')
 
     } catch (e) {
         res.status(405).send(e)

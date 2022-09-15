@@ -143,7 +143,11 @@ const getIdApi = async (id) =>{
             healthScore: e.healthScore,
             stepByStep: e.analyzedInstructions[0]?.steps.map(el => el),
     }
-    return object
+
+    if(object){
+        return object
+    }
+    throw new Error(`${id} no encontrado `)
     // const findApi = await allFromApi
     // const findId = await findApi.find(e => e.id === id)
     // if(findId){
@@ -152,29 +156,32 @@ const getIdApi = async (id) =>{
 }
 
 const getIdDb = async (id) =>{
-    const findDbId = await Type.findByPk(id)
+    const findDbId = await Recipe.findByPk(id)
     console.log(findDbId)
     if(findDbId){
         return findDbId
     }
-    throw new Error('error en getIdDb')
+    throw new Error(`${id} no encontrado `)
 }
 
 
-const searchAllById = async (id) =>{
-    //const fromApi = await getIdApi(id)
-    const fromDb = await getIdDb(id, { include: [{ model: Type }] })
-    //const idAll = await Promise.all([fromApi, fromDb])
-    return fromDb
-}
+// const searchAllById = async (id) =>{
+//     const fromApi = await getIdApi(id)
+//     const fromDb = await getIdDb(id)
+//     const idAll = await Promise.all([fromApi, fromDb])
+//     console.log(idAll,'oioioioioioio')
+//     return idAll
+// }
 
 router.get('/:idReceta', async (req, res) =>{
     try {
      const  id  = req.params.idReceta
-    const getById = await searchAllById(id)
-    if(getById){
-        return res.json(getById)
+     if(id.length > 8 ){
+        const findDb = await getIdDb(id)
+        return res.status(202).json(findDb)
     }
+    const findApi = await getIdApi(id)
+    return res.status(202).json(findApi)
         
     } catch (error) {
         res.status(404).send(error)

@@ -18,14 +18,24 @@ const { Op } = require("sequelize");
 // Si no existe ninguna receta mostrar un mensaje adecuado
 
 const searchName = async (name) => { 
-       const getApi = await axios(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&number=30`)
+       const getApi = await axios(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=30`)
        const filtResults = getApi.data.results.filter(e => e.title.toLowerCase().includes(name.toLowerCase()))
-       
+       const e = filtResults[0]
        if(filtResults.length === 0){
            return new Error('name does not exist in api')
     }
-   
-    return filtResults
+    const filtObj = [{
+        id: e.id,
+        name: e.title,
+        img: e.image,
+        plateType: e.dishTypes,
+        diets: e.diets,
+        resume: e.summary,
+        healthScore: e.healthScore,
+        stepByStep: e.analyzedInstructions[0]?.steps.map(el => el),
+    }]
+  
+    return filtObj
 }
 
 const searchNameDb = async (name) => {
@@ -33,23 +43,22 @@ const searchNameDb = async (name) => {
         where: { name: {[Op.iLike]: `%${name}%`} }, include: [{model: Type }] 
     });
     if(getDb.length > 0) {
-        return getDb
+        const filtDb = getDb.map(el=> el.dataValues)
+        
+        return filtDb
     }
 }
 
 const searchNameAll = async (name) => {
-    const nameApi = await searchName(name)
-    const nameDb = await searchNameDb(name)
-    const nameDb2 = await nameDb.dataValues
-    console.log(nameApi, 'apiiiiiiiiiii')
-    if(nameApi.name === name) {
-        return nameApi
-    } 
-    if(nameDb2.name === name) {
-        return nameDb2
-    }
-    else{
-        return 'name not found'
+    try {      
+    const api =  await searchName(name)   
+    const db =  await searchNameDb(name)  
+    const all = await Promise.all([api, db])
+
+        return all
+
+    } catch (e) {
+        return e 
     }
     
 }
@@ -73,6 +82,7 @@ const allFromApi = async () => {
 })
 
     if(mapAux){
+        
         return mapAux
     }
     throw new Error('error en allfromapi')
@@ -104,17 +114,11 @@ router.get('/', async (req, res) =>{
     const { name } = req.query
     try {
         if(name){
-            const apiName = await searchNameAll(name)   
-            console.log(apiName, 'eeeeeeeee')     
-            if(apiName){
-                return res.status(202).json(apiName)
-            }
+            const tryAll = await searchNameAll(name)
+            return res.status(202).json(tryAll)
         }
-        const resAll = await allFromAll()
-        
-        return res.json(resAll)
-        
-
+        const allAll = await allFromAll()
+        return res.json(allAll)
     } catch (e) {
         res.status(404).send(e)
     }
@@ -139,7 +143,6 @@ const getIdApi = async (id) =>{
             healthScore: e.healthScore,
             stepByStep: e.analyzedInstructions[0]?.steps.map(el => el),
     }
-    console.log(object, 'oooooooooo')
     return object
     // const findApi = await allFromApi
     // const findId = await findApi.find(e => e.id === id)
@@ -150,6 +153,7 @@ const getIdApi = async (id) =>{
 
 const getIdDb = async (id) =>{
     const findDbId = await Type.findByPk(id)
+    console.log(findDbId)
     if(findDbId){
         return findDbId
     }
@@ -158,14 +162,10 @@ const getIdDb = async (id) =>{
 
 
 const searchAllById = async (id) =>{
-    const fromApi = await getIdApi(id)
-    if(fromApi){
-        return fromApi
-    }
-    const fromDb = await getIdDb(id)
-    if(fromDb){
-        return fromDb
-    }
+    //const fromApi = await getIdApi(id)
+    const fromDb = await getIdDb(id, { include: [{ model: Type }] })
+    //const idAll = await Promise.all([fromApi, fromDb])
+    return fromDb
 }
 
 router.get('/:idReceta', async (req, res) =>{

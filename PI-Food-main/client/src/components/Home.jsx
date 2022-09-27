@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getRecipes, getTypes, orderByName, orderHs, filterCreated, filterDiets } from "../actions";
 import { Link } from 'react-router-dom';
 import Card from './Card';
+import Paginado from "./Paginado";
+
 
 
 export default function Home() {
@@ -12,14 +14,25 @@ export default function Home() {
   const allRecipes = useSelector ( (state) => state.recipes)
   const allDiets = useSelector ( (state) => state.diets)
 
-  
+  const [order, setOrder] = useState('')
+
+  const [ currentP, setCurrentP ] = useState(1)
+  const [ rPerPage, setRperPage ] = useState(9)
+  const lastRecipe = currentP * rPerPage
+  const firstRecipe = lastRecipe - rPerPage
+  const recipesPerPage =  allRecipes.slice(firstRecipe, lastRecipe)
+
+  const paginado = (pageNumber) => {
+    setCurrentP(pageNumber)
+  }
+
   useEffect(() =>{
     dispatch(getRecipes())
   },[dispatch])
 
-  useEffect(() =>{
-    dispatch(getTypes())
-  },[dispatch])
+  // useEffect(() =>{
+  //   dispatch(getTypes())
+  // },[dispatch])
   
 
 
@@ -30,10 +43,14 @@ export default function Home() {
   function handleOrder(e){
     e.preventDefault();
     dispatch(orderByName(e.target.value))
+    setCurrentP(1)
+    setOrder(`ordenando ${e.target.value}`)
   }
   function handleHs(e){
     e.preventDefault();
     dispatch(orderHs(e.target.value))
+    setCurrentP(1)
+    setOrder(`ordenando ${e.target.value}`)
   }
   function handleCreated(e){
     e.preventDefault();
@@ -85,13 +102,20 @@ export default function Home() {
             }
           </select>
         </div>
+        <div >
+        <Paginado 
+          rPerPage= {rPerPage}
+          allRecipes = {allRecipes.length}
+          paginado = {paginado}
+          />
+        </div>
           { 
-          allRecipes? allRecipes.map( r => {
+          recipesPerPage? recipesPerPage.map( r => {
               return(
               <Card id={r.id} name={r.name} img={r.img} types={r.types} key={r.id} />
           )}) : 
           <div>
-              <p >Loading Pokemons...</p>
+              <p >Loading Recipes...</p>
           </div>         
        }
         </div>

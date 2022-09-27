@@ -76,15 +76,15 @@ function reducer(state= initialState, { type, payload }){
             ...JSON.parse(JSON.stringify(state)),
             recipes: filCreated
         }
-        case 'FILTER_DIETS':
-            const recipesGet = state.filtRecipes
-            const filtIt = recipesGet.map(e => e.diets)
-            const filt2 = filtIt.filter(el => el.includes(payload))
-            console.log(filt2, 'qqqqqqqqq')
-        return{
-            ...state,
-            recipes: filt2
-        }
+        // case 'FILTER_DIETS':
+        //     const recipesGet = state.filtRecipes
+        //     const filtIt = recipesGet.map(e => e.diets)
+        //    // const filt2 = filtIt.filter(el => el.includes(payload))
+        //    // console.log(filt2, 'qqqqqqqqq')
+        // return{
+        //     ...state,
+        //     recipes: filtIt
+        // }
 
             default: 
             return state;        

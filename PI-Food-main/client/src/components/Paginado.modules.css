@@ -1,0 +1,4 @@
+.pag {
+    display: flex;
+    flex-direction:column;
+}

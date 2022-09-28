@@ -19,13 +19,15 @@ const alrecipes = require('../100recipes.json')
 // Si no existe ninguna receta mostrar un mensaje adecuado
 
 
-// cambiar cantidad a 100 para presentar !!
+// CAMBIAR CANTIDAD A 100 !!!!!!!!
+
+
 const allFromApi = async () => { 
 
-    // const getAllApi = await axios(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=30`)
-    // const aux =  getAllApi.data.results
-    //cambiar a api ver si anda bien la api
-    const aux = alrecipes.results //archivo hardcodeado
+    const getAllApi = await axios(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=30`)
+    const aux =  getAllApi.data.results
+   // cambiar a api ver si anda bien la api
+    //const aux = alrecipes.results //archivo hardcodeado
     const mapAux = await aux.map(e => {
         const obj = {
             id: e.id,

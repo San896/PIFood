@@ -1,10 +1,11 @@
+
 const initialState = {
     recipes :[],
     filtRecipes: [],
     diets: []
 }
 
-//state y action
+//state y action-- tiene type y payload
 function reducer(state= initialState, { type, payload }){
     switch(type) {
         case 'GET_RECIPES':
@@ -19,6 +20,11 @@ function reducer(state= initialState, { type, payload }){
                 //...state,
                 ...JSON.parse(JSON.stringify(state)),
                 diets: payload
+            }
+        case 'SEARCH_BY_NAME':
+            return {
+                ...state,
+                recipes: payload
             }
         case 'ORDER_BY_NAME':
             const allR = state.filtRecipes
@@ -76,15 +82,19 @@ function reducer(state= initialState, { type, payload }){
             ...JSON.parse(JSON.stringify(state)),
             recipes: filCreated
         }
-        // case 'FILTER_DIETS':
-        //     const recipesGet = state.filtRecipes
-        //     const filtIt = recipesGet.map(e => e.diets)
-        //    // const filt2 = filtIt.filter(el => el.includes(payload))
-        //    // console.log(filt2, 'qqqqqqqqq')
-        // return{
-        //     ...state,
-        //     recipes: filtIt
-        // }
+        case 'POST_RECIPE':
+            return{
+                ...state,
+            }
+        case 'FILTER_DIETS':
+            const recipesGet = state.filtRecipes
+            const filtR = recipesGet.filter(e => e.diets.includes(payload))
+            const response = payload === 'all'? state.filtRecipes : filtR
+
+        return{
+            ...state,
+            recipes: response
+        }
 
             default: 
             return state;        

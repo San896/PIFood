@@ -21,6 +21,27 @@ export function getTypes(){
     }
 }
 
+export function postRecipe(payload){
+    return async function(dispatch){
+        const axiosPost = await axios.post('http://localhost:3005/recipes',payload)
+        return axiosPost
+    }
+}
+
+export function searchByName(name){
+    return async function(dispatch){
+        try {
+            let searchAxios = await axios('http://localhost:3005/recipes?name=' + name);
+                return dispatch({
+                    type: 'SEARCH_BY_NAME',
+                    payload: searchAxios.data
+                })
+        } catch (e) {
+            console.log(e)
+        }
+    }
+}
+
 export function orderByName(payload){
     return ({
         type: 'ORDER_BY_NAME',
@@ -40,6 +61,7 @@ export function filterCreated(payload){
     })
 }
 export function filterDiets(payload){
+
     return ({
         type: 'FILTER_DIETS',
         payload

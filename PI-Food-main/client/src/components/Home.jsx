@@ -5,7 +5,7 @@ import { getRecipes, getTypes, orderByName, orderHs, filterCreated, filterDiets 
 import { Link } from 'react-router-dom';
 import Card from './Card';
 import Paginado from "./Paginado";
-
+import SearchBar from './SearchBar'
 
 
 export default function Home() {
@@ -30,9 +30,9 @@ export default function Home() {
     dispatch(getRecipes())
   },[dispatch])
 
-  // useEffect(() =>{
-  //   dispatch(getTypes())
-  // },[dispatch])
+  useEffect(() =>{
+    dispatch(getTypes())
+  },[dispatch])
   
 
 
@@ -108,6 +108,7 @@ export default function Home() {
           allRecipes = {allRecipes.length}
           paginado = {paginado}
           />
+         <SearchBar/> 
         </div>
           { 
           recipesPerPage? recipesPerPage.map( r => {

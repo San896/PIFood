@@ -15,7 +15,7 @@ export default function Home() {
   const allDiets = useSelector ( (state) => state.diets)
 
   const [order, setOrder] = useState('')
-
+ // ver bien el estado order para que es
   const [ currentP, setCurrentP ] = useState(1)
   const [ rPerPage, setRperPage ] = useState(9)
   const lastRecipe = currentP * rPerPage
@@ -69,6 +69,9 @@ export default function Home() {
           <button  onClick={e => handleClick(e)}>
           Volver a cargar
         </button>
+          <div>
+           <Link to='/createRecipe' > <button> Create your own Recipe </button></Link>
+          </div>
         <div>
         <div>Order By Name: </div>
           <select onChange={e => handleOrder(e)} >

@@ -20,7 +20,7 @@ export default function Home() {
   const [ rPerPage, setRperPage ] = useState(9)
   const lastRecipe = currentP * rPerPage
   const firstRecipe = lastRecipe - rPerPage
-  const recipesPerPage =  allRecipes.slice(firstRecipe, lastRecipe)
+  const recipesPerPage =  allRecipes.slice(firstRecipe, lastRecipe) //0 a 9 el slice deja fuera el ultimo
 
   const paginado = (pageNumber) => {
     setCurrentP(pageNumber)
@@ -112,11 +112,11 @@ export default function Home() {
           paginado = {paginado}
           />
          <SearchBar/> 
-        </div>
+        </div> //ver api y db id y types como vienen
           { 
           recipesPerPage? recipesPerPage.map( r => {
               return(
-              <Card id={r.id} name={r.name} img={r.img} types={r.types} key={r.id} />
+              <Card id={r.id} name={r.name} img={r.img} types={r.types}  />
           )}) : 
           <div>
               <p >Loading Recipes...</p>

@@ -18,13 +18,15 @@ export default function Creation(){
         resume: '',
         healthScore:'',
         stepByStep:'',
-        types:[], 
+        types:'', 
         img:'', 
     })
 
+console.log(input)
+
     useEffect(() => {
         dispatch(getTypes())
-    },[])
+    },[dispatch])
 
 
     const handleChange = (e) => {
@@ -52,35 +54,62 @@ export default function Creation(){
             resume: '',
             healthScore:'',
             stepByStep:'',
-            types:[], 
+            types:'', 
             img:'', 
         })
+        history.push('/home')
      }
 
-  return(
+
+  return (
     <div>
         <Link to='/home'><button> Go Back </button></Link>
-        <h1> Create your own Recipe</h1>
-        <form >
+        <h1> Create your own Recipe </h1>
+        <form onSubmit={(e) => handleSubmit(e)}>
             <div>
                 <label>Name: </label>
-                <input type="text" value={input.name} name='name' onChange={handleChange}/>
+                <input 
+                placeholder="Name"
+                type="text" 
+                value={input.name} 
+                name='name' 
+                onChange={(e)=>handleChange(e)}/>
             </div>
             <div>
                 <label>Resume: </label>
-                <input type="text" value={input.resume} name='resume' onChange={handleChange}/>
+                <input 
+                placeholder="Resume"
+                type="text" 
+                value={input.resume} 
+                name='resume' 
+                onChange={(e)=>handleChange(e)}/>
             </div>
             <div>
-                <label>Health Score: </label>
-                <input type="number" value={input.healthScore} name='healthScore' onChange={handleChange}/>
+                <label>Haelth Score: </label>
+                <input 
+                placeholder="Haelth Score"
+                type="number" 
+                value={input.healthScore} 
+                name='healthScore' 
+                onChange={(e)=>handleChange(e)}/>
             </div>
             <div>
                 <label>Step By Step: </label>
-                <input type="text" value={input.stepByStep} name='stepByStep' onChange={handleChange}/>
+                <input 
+                placeholder="Step By Step"
+                type="text" 
+                value={input.stepByStep} 
+                name='stepByStep' 
+                onChange={(e)=>handleChange(e)}/>
             </div>
             <div>
                 <label>Image: </label>
-                <input type="text" value={input.img} name='img' onChange={handleChange}/>
+                <input 
+                placeholder="Image"
+                type="text" 
+                value={input.img} 
+                name='img' 
+                onChange={(e)=>handleChange(e)}/>
             </div>
             <label>Diets: </label>
             <div>

@@ -4,6 +4,17 @@ import  { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import { postRecipe, getTypes } from "../actions";
 
+function validate(input){
+    let obj = {};
+    if(!input.name){
+        obj.name = 'Name is required'
+    } else if(!input.resume){
+        obj.resume = 'Resume is required'
+    } else if(input.types.length === 0){
+        obj.types = 'Type of Diet is required'
+    }
+    return obj;
+}
 
 export default function Creation(){
 
@@ -13,16 +24,18 @@ export default function Creation(){
 
     const diets1 = useSelector((state) => state.diets)
 
+    const [ error, setError ] = useState({})
+
     const [ input, setInput ] = useState({
         name: '',
         resume: '',
         healthScore:'',
         stepByStep:'',
-        types:'', 
+        types:[], 
         img:'', 
     })
 
-console.log(input)
+console.log(error)
 
     useEffect(() => {
         dispatch(getTypes())
@@ -34,6 +47,10 @@ console.log(input)
             ...input,
             [e.target.name]: e.target.value
         })
+        setError(validate({
+            ...input,
+            [e.target.name]: e.target.value,
+        }))
     }
 
     function handleCheckBox(e){
@@ -42,6 +59,11 @@ console.log(input)
                 ...input,
                 types: [...input.types, e.target.value]
             })
+        } else if(e.target.indeterminate) {
+            setError(validate({
+                ...input,
+                [e.target.name]: e.target.value,
+            }))
         }
     }
 
@@ -54,7 +76,7 @@ console.log(input)
             resume: '',
             healthScore:'',
             stepByStep:'',
-            types:'', 
+            types:[], 
             img:'', 
         })
         history.push('/home')
@@ -73,7 +95,9 @@ console.log(input)
                 type="text" 
                 value={input.name} 
                 name='name' 
+                required
                 onChange={(e)=>handleChange(e)}/>
+                {error.name && ( <p>{error.name}</p>)}  
             </div>
             <div>
                 <label>Resume: </label>
@@ -82,7 +106,9 @@ console.log(input)
                 type="text" 
                 value={input.resume} 
                 name='resume' 
+                required
                 onChange={(e)=>handleChange(e)}/>
+                {error.resume && ( <p>{error.resume}</p>)} 
             </div>
             <div>
                 <label>Haelth Score: </label>
@@ -115,10 +141,13 @@ console.log(input)
             <div>
                 {
                     diets1.map( d => (
-                        <label> {d} <input type="checkbox" name={d} value={d} onChange={(e)=>handleCheckBox(e)}/></label>
-                    ) )                    
-                }
+                        <label> {d} <input type="checkbox" name={d} value={input.types} required onChange={(e)=>handleCheckBox(e)}/></label>
+                        ) )                    
+                    }
             </div>
+                    {
+                        error.types && (<p>{error.types}</p>)
+                    }
             <button type="submit" > Create </button>
         </form>
     </div>

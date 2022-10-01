@@ -2,7 +2,8 @@
 const initialState = {
     recipes :[],
     filtRecipes: [],
-    diets: []
+    diets: [],
+    detail: [],
 }
 
 //state y action-- tiene type y payload
@@ -20,6 +21,11 @@ function reducer(state= initialState, { type, payload }){
                 //...state,
                 ...JSON.parse(JSON.stringify(state)),
                 diets: payload
+            }
+        case 'GET_DETAIL':
+            return{
+                ...state,
+                detail: payload
             }
         case 'SEARCH_BY_NAME':
             return {

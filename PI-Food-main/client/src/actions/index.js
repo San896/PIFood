@@ -21,6 +21,20 @@ export function getTypes(){
     }
 }
 
+export function getDetail(id){
+    return async function(dispatch){
+        try {
+            let axiosId = await axios('http://localhost:3005/recipes/'+id)
+            return dispatch({
+                type: 'GET_DETAIL',
+                payload: axiosId.data
+            })
+        } catch (e) {
+            console.log(e)
+        }
+    }
+}
+
 export function postRecipe(payload){
     return async function(dispatch){
         const axiosPost = await axios.post('http://localhost:3005/recipes',payload)

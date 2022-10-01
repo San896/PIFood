@@ -53,9 +53,22 @@ const allFromApi = async () => {
 const allFromDb = async () => {
     const allDb = await Recipe.findAll({
         include: Type,
+    })  
+    const mapDb = allDb.map( e => {
+        const auxObj = {
+            id: e.id,
+            name: e.name,
+            resume: e.resume,
+            createdInDb: e.createdInDb,
+            healthScore: e.healthScore,
+            img: e.img,
+            stepByStep: e.stepByStep,
+            types: e.types.map(el => el.name),
+        }
+        return auxObj
     })
     if(allDb){
-        return allDb
+        return mapDb
     }
    
 }
@@ -64,6 +77,7 @@ const allFromAll = async () => {
     const apiAll = await allFromApi()
     const dbAll = await allFromDb()
     const joinAll = await apiAll.concat(dbAll)
+
     if(joinAll){
         return joinAll
     }
@@ -94,14 +108,39 @@ router.get('/', async (req, res) =>{
 // Incluir los tipos de dieta asociados
 // GET https://api.spoonacular.com/recipes/{id}/information
 
+async function getIdApi(id){
+    const getById = await axios(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY}`)
+    const e = await getById.data
+        const objId = {
+            id: e.id,
+            name: e.title,
+            img: e.image,
+            plateType: e.dishTypes,
+            diets: e.diets,
+            resume: e.summary,
+            healthScore: e.healthScore,
+            stepByStep: e.analyzedInstructions[0]?.steps.map(el => el),
+        }
+        return objId
+}
+
+async function getIdDb(id){
+    const idDb = await Recipe.findByPk(id)
+    return idDb
+}
+
 router.get('/:idReceta', async (req, res) =>{
     const  id  = req.params.idReceta
-        const getAllId = await allFromAll()
         try {
-            if(id){
-            const filtId = getAllId.find(e => e.id === id)
-            filtId.length? res.stauts(202).json(filtId) : res.stauts(404).send('not found')
-        }     
+            if( id.length > 9){
+                const dbId = await getIdDb(id)
+                return res.stauts(202).json(dbId)  
+            }
+            const apiId = await getIdApi(id)
+            if(apiId){
+                return res.status(200).json(apiId)
+            }
+           
     } catch (error) {
         res.status(404).send(error)
     }

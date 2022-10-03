@@ -1,0 +1,36 @@
+.home{
+    background-color: rgba(165, 42, 42, 0.808);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.recargar{
+    display: flex;
+}
+
+.createBtn{
+    display: flex;
+    align-self: flex-end;
+    flex-direction: column;
+}
+
+.search{
+    display: flex;
+    align-self: center;
+    top: 0%;
+}
+
+.pag{
+    display: flex;
+    align-self: center;
+}
+
+.cards{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    grid-column: 3 / 9;
+    grid-row: 2 / 14;
+    justify-content: space-evenly;
+}

@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import Card from './Card';
 import Paginado from "./Paginado";
 import SearchBar from './SearchBar'
-
+import style from './Home.module.css'
 
 export default function Home() {
 
@@ -62,23 +62,39 @@ export default function Home() {
   }
 
     return(
-        <div>
-          <div>
-           <Link to='/' > Ir a Home </Link>
-          </div>
-          <button  onClick={e => handleClick(e)}>
-          Volver a cargar
-        </button>
-          <div>
-           <Link to='/createRecipe' > <button> Create your own Recipe </button></Link>
-          </div>
-        <div>
+        <div className={style.home}>
+
+          <div className={style.recargar}>
+             <Link to='/' > <button>Ir a Home</button> </Link>
+             <button  onClick={e => handleClick(e)}>
+              Volver a cargar
+             </button>
+         </div>
+
+         <div className={style.search}>         
+             <SearchBar/> 
+        </div>
+
+        <div className={style.pag}>
+        <Paginado 
+          rPerPage= {rPerPage}
+          allRecipes = {allRecipes.length}
+          paginado = {paginado}
+          />
+        </div>
+
+           <div className={style.createBtn}>
+             <Link to='/createRecipe' > <button> Create your own Recipe </button></Link>
+           
+
+      <div className={style.filters}>
         <div>Order By Name: </div>
           <select onChange={e => handleOrder(e)} >
             <option value="asc"> A - Z </option>
             <option value="desc"> Z - A </option>
           </select>
         </div>
+        <h3></h3>
         <div>
          <div>Order By HealthScore:</div>
           <select onChange={e => handleHs(e)} >
@@ -86,6 +102,7 @@ export default function Home() {
             <option value="Low"> Lower Hs</option>
          </select>
         </div>
+        <h3></h3>
         <div>
         <div>Filter Existent or Created </div>
           <select onChange={e => handleCreated(e)} >
@@ -94,6 +111,7 @@ export default function Home() {
             <option value="existent">Existentes</option>
           </select>
         </div> 
+        <h3></h3>
         <div>
           <div>Filter By Diet: </div>
           <select onChange={e => handleDiets(e)}>
@@ -105,24 +123,19 @@ export default function Home() {
             }
           </select>
         </div>
-        <div >
-        <Paginado 
-          rPerPage= {rPerPage}
-          allRecipes = {allRecipes.length}
-          paginado = {paginado}
-          />
-         <SearchBar/> 
         </div>
+        <div className={style.cards}>
           { 
           recipesPerPage? recipesPerPage.map( r => {
-              return(
-                
-              <Card id={r.id} name={r.name} img={r.img} types={r.types} />
-          )}) : 
-          <div>
+            return(
+              <Card id={r.id} name={r.name} img={r.img} types={r.diets || r.types} />
+              )}) : 
+              <div>
               <p >Loading Recipes...</p>
           </div>         
        }
+       </div>    
+
         </div>
     )
 }

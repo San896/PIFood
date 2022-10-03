@@ -1,0 +1,32 @@
+
+.general{
+    display: flex;
+    justify-content: center;
+    background-image: url('../imagenes/fondo1.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+    width: 40vw;
+    }
+    
+.contenedor{
+    display: flex;
+    margin-top: 10%;
+    margin-left: 50px;
+}
+
+.contBtn{
+    display: flex;
+    align-self: flex-end;
+    margin-bottom: 30px;
+    margin-left: 6px;
+}
+.btn{
+    border-radius: 1rem
+}
+.header{
+    border: 3px solid black;
+    border-radius: 1rem;
+    margin-bottom: 116%;
+    font-size: 0,9cm;
+}

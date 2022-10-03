@@ -1,0 +1,33 @@
+.create{
+    display: flex;
+    background-color: chocolate;
+    height: 46.8vw;
+    width: 100vw;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-bottom: 0%;
+    padding-bottom: 0%;
+    flex-direction: column;
+}
+
+.title{
+    display: flex;
+    font-weight: normal;
+    text-shadow: 2px 2px 2px rgb(25, 25, 25);
+    border: 2px solid black;
+    border-radius: 2rem;
+    width: fit-content;
+    margin-top: 1%;
+    margin-left: 35%;
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    border: 1.5px solid black;
+    border-radius: 1rem;
+    margin-right: 60px;
+    height: 500px;
+}

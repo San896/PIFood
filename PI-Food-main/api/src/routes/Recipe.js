@@ -52,7 +52,13 @@ const allFromApi = async () => {
 
 const allFromDb = async () => {
     const allDb = await Recipe.findAll({
-        include: Type,
+        include: {
+            model: Type,
+            attributes: ['name'],
+            through:{ 
+                attributes: [],
+            }
+        }
     })  
     const mapDb = allDb.map( e => {
         const auxObj = {
@@ -67,6 +73,7 @@ const allFromDb = async () => {
         }
         return auxObj
     })
+    console.log(mapDb, 'aaaaaa')
     if(allDb){
         return mapDb
     }
@@ -121,25 +128,38 @@ async function getIdApi(id){
             healthScore: e.healthScore,
             stepByStep: e.analyzedInstructions[0]?.steps.map(el => el),
         }
-        return objId
+        
+        return objId || undefined
 }
 
 async function getIdDb(id){
-    const idDb = await Recipe.findByPk(id)
-    return idDb
+    const idDb = await Recipe.findByPk(id,{
+        include: {
+            model: Type,
+            attributes: ["name"],
+            through: {
+                attributes: []
+            }
+        }
+    })
+    const aux1 = idDb.dataValues.types.map(e => e.name)
+   
+    return {...idDb.dataValues, types:aux1} || undefined
 }
 
 router.get('/:idReceta', async (req, res) =>{
     const  id  = req.params.idReceta
-        try {
-            if( id.length > 9){
-                const dbId = await getIdDb(id)
-                return res.stauts(202).json(dbId)  
-            }
-            const apiId = await getIdApi(id)
-            if(apiId){
+    try {
+        if( id.length > 9){
+            const dbId = await getIdDb(id)
+            
+                return res.status(202).json(dbId)  
+            }else {
+
+                const apiId = await getIdApi(id)
                 return res.status(200).json(apiId)
             }
+            
            
     } catch (error) {
         res.status(404).send(error)
@@ -172,6 +192,7 @@ router.post('/', async (req, res) =>{
         })
         
         await createR.addType(findTypes)
+        
         return res.status(200).send('created succesfully')
 
     } catch (e) {

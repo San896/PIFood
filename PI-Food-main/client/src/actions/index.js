@@ -81,3 +81,17 @@ export function filterDiets(payload){
         payload
     })
 }
+
+export function deleteRecipe(id){
+    return async function(dispatch){
+        try {
+            let deleteAxios = await axios.delete('http://localhost:3005/recipes/'+id);
+            return dispatch({
+                type: 'DELETE_RECIPE',
+                payload: deleteAxios.data
+            })
+        } catch (err) {
+            
+        }
+    }
+}

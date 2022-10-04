@@ -62,39 +62,32 @@ export default function Home() {
   }
 
     return(
+      <div className={style.gralcontainer}>
+
+      
         <div className={style.home}>
 
           <div className={style.recargar}>
              <Link to='/' > <button>Ir a Home</button> </Link>
-             <button  onClick={e => handleClick(e)}>
+             <button className={style.btnrecargar} onClick={e => handleClick(e)}>
               Volver a cargar
              </button>
-         </div>
-
-         <div className={style.search}>         
-             <SearchBar/> 
-        </div>
-
-        <div className={style.pag}>
-        <Paginado 
-          rPerPage= {rPerPage}
-          allRecipes = {allRecipes.length}
-          paginado = {paginado}
-          />
-        </div>
 
            <div className={style.createBtn}>
              <Link to='/createRecipe' > <button> Create your own Recipe </button></Link>
-           
+             </div>
+         
 
+             
       <div className={style.filters}>
+        <div>
         <div>Order By Name: </div>
           <select onChange={e => handleOrder(e)} >
             <option value="asc"> A - Z </option>
             <option value="desc"> Z - A </option>
           </select>
-        </div>
-        <h3></h3>
+          </div>
+
         <div>
          <div>Order By HealthScore:</div>
           <select onChange={e => handleHs(e)} >
@@ -102,7 +95,7 @@ export default function Home() {
             <option value="Low"> Lower Hs</option>
          </select>
         </div>
-        <h3></h3>
+        
         <div>
         <div>Filter Existent or Created </div>
           <select onChange={e => handleCreated(e)} >
@@ -111,7 +104,7 @@ export default function Home() {
             <option value="existent">Existentes</option>
           </select>
         </div> 
-        <h3></h3>
+        
         <div>
           <div>Filter By Diet: </div>
           <select onChange={e => handleDiets(e)}>
@@ -124,6 +117,24 @@ export default function Home() {
           </select>
         </div>
         </div>
+        </div>
+
+        <div className={style.search}>         
+             <SearchBar/> 
+        
+
+        <div className={style.pag}>
+        <Paginado 
+          rPerPage= {rPerPage}
+          allRecipes = {allRecipes.length}
+          paginado = {paginado}
+          />
+          </div>
+        </div>
+        </div>
+
+
+
         <div className={style.cards}>
           { 
           recipesPerPage? recipesPerPage.map( r => {
@@ -134,8 +145,10 @@ export default function Home() {
               <p >Loading Recipes...</p>
           </div>         
        }
-       </div>    
+       </div>   
 
-        </div>
+
+      </div> 
+        
     )
 }

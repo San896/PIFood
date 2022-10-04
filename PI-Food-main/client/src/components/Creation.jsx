@@ -154,12 +154,14 @@ console.log(error, 'errrrooorr')
             <h3></h3>
             <button type="submit" > Create </button>
         </form>
+        <div className={style.divs}>
                 {input.types.map(e => 
                  <div>
                     <p>{e}</p>
                     <button onClick={() => handleDelete(e)}>X</button>
                  </div>
                 )}
+                </div>
     </div>
   )
 }

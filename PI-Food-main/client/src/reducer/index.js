@@ -94,13 +94,23 @@ function reducer(state= initialState, { type, payload }){
             }
         case 'FILTER_DIETS':
             const recipesGet = state.filtRecipes
-            const filtR = recipesGet.filter(e => e.diets.includes(payload))
+            const aaa =  recipesGet.filter(e=> e.diets )
+            const filtR = aaa.filter(e => e.diets.includes(payload))
+            console.log(filtR, 'eeeeeeeeeeeee')
             const response = payload === 'all'? state.filtRecipes : filtR
 
         return{
             ...state,
             recipes: response
         }
+ 
+        case 'DELETE_RECIPE':
+            return{
+                ...state,
+                recipes: state.recipes.filter(e => e.id !== payload),
+                filtRecipes: state.filtRecipes.filter(e => e.id !== payload)
+            }
+
 
             default: 
             return state;        

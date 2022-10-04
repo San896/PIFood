@@ -1,36 +1,69 @@
-.home{
-    background-color: rgba(165, 42, 42, 0.808);
+.gralcontainer{
+    background-color: rgba(190, 70, 70, 0.808);
     width: 100%;
+    height: 100%;
+}
+
+.home{
+    background-color: rgb(105, 24, 24);
     display: flex;
     flex-direction: column;
+    height: 200px;
+    margin-bottom: 5rem;
 }
 
 .recargar{
+    top:0.75rem;
     display: flex;
+    flex-direction: column;
+}
+.btnrecargar{
+    width: fit-content;
 }
 
 .createBtn{
+    position: absolute;
     display: flex;
     align-self: flex-end;
-    flex-direction: column;
+    top: 1rem;
+    height: 4rem;
+    width: 6rem;
+}
+
+.filters{
+    display: flex;
+    align-self: center;
+    flex-direction: row;
+    width: 450px;
+    height: 30px;
+    text-align: center;
 }
 
 .search{
     display: flex;
     align-self: center;
-    top: 0%;
+    margin-top: 5rem;
+    flex-direction: column;
 }
 
 .pag{
     display: flex;
     align-self: center;
+    margin-top: 0rem;
 }
 
 .cards{
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    grid-column: 3 / 9;
-    grid-row: 2 / 14;
-    justify-content: space-evenly;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
+
+/* display: flex;
+flex-wrap: wrap;
+flex-direction: row;
+grid-column: 3 / 9;
+grid-row: 2 / 14;
+justify-content: space-evenly; */

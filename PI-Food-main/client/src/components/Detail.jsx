@@ -3,8 +3,8 @@ import{ Link } from 'react-router-dom'
 import { useParams } from "react-router-dom";
 import  { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from "react-redux";
-import { getDetail } from "../actions";
-
+import { getDetail, deleteRecipe } from "../actions";
+import style from './Detail.module.css'
 
 
 
@@ -22,20 +22,26 @@ const theRecipe = useSelector( state => state.detail)
 console.log(theRecipe, 'recipeeee')
 
 
+function handleDeleteRecipe(id){
+    if(!window.confirm(`Are you sure you want to delete the ${theRecipe.name} recipe?`)) return;
+    dispatch(deleteRecipe(id));       
+}
+
     return(
-        <div>
+        <div className={style.detail}>
             <Link to='/home'><button>Go Back</button></Link>
             { 
              paramId.id.length > 9? (<div>
+                <button onClick={(e) => handleDeleteRecipe(e)}>X</button>
                 <h1>{theRecipe.name}</h1>
                 <h3> ID: {theRecipe.id}</h3>
                 <h3>Health Score: {theRecipe.healthScore? theRecipe.healthScore: 'no HS'}</h3>
                 <h3>Types of Diets: {theRecipe.types? theRecipe.types: 'failed'}</h3>
-                <img src={theRecipe.img} alt="Img failed" />
                 <div>
-                    <h3>Resume: {theRecipe.resume? theRecipe.resume : 'no resume'}</h3>
-                    <h3>Step By Step: {theRecipe.stepByStep? theRecipe.stepByStep : 'no steps'}</h3>
+                    <img className={style.img} src={theRecipe.img} alt="Img failed" width='220px' height='220px'/>
+                    <h3 >Resume: {theRecipe.resume? theRecipe.resume : 'no resume'}</h3>
                 </div>
+                    <h3>Step By Step: {theRecipe.stepByStep? theRecipe.stepByStep : 'no steps'}</h3>
              </div>):
              ( <div>
               <h1>{theRecipe.name}</h1>
@@ -43,7 +49,7 @@ console.log(theRecipe, 'recipeeee')
               <h3> ID: {theRecipe.id}</h3>
               <h3> Plate Type: {theRecipe.plateType}</h3>
               <h3> Type of Diets: {theRecipe.diets}</h3>
-              <img src={theRecipe.img} alt="Image failed" />
+              <img className={style.img} src={theRecipe.img} alt="Image failed" width='220px' height='220px'/>
                  <p dangerouslySetInnerHTML={{__html: theRecipe.resume,}}></p>
               <div>
                  <h3> Step By Step: {!theRecipe.stepByStep? 'no steps' : theRecipe.stepByStep.map( el => (

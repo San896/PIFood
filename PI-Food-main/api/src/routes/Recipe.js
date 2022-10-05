@@ -202,6 +202,23 @@ router.post('/', async (req, res) =>{
 
 })
 
+router.delete('/', async (req, res) =>{
+    const  { id } = req.query
+        try {
+            if(!id){
+                throw new Error('Id missing')
+            }
+            if(!id.length > 9){
+                throw new Error('Invalid Id')
+            }
+
+             Recipe.destroy({where: {id:id}}).then(response => {
+                return res.status(200).send(id)
+             })
+        } catch (err) {
+            console.log(err)
+        }
+})
 // [ ] GET /diets:
 // Obtener todos los tipos de dieta posibles
 // En una primera instancia, cuando no exista ninguno, deberán precargar la base de datos con los tipos de datos indicados por spoonacular acá

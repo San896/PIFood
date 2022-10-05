@@ -4,6 +4,8 @@ import  { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import { postRecipe, getTypes } from "../actions";
 import style from './Creation.module.css'
+import fondo from '../imagenes/cooking.png'
+
 
 function validate(input){
     let obj = {};
@@ -86,7 +88,7 @@ console.log(error, 'errrrooorr')
 
   return (
     <div className={style.create}>
-        <Link to='/home'><button> Go Back </button></Link>
+        <Link to='/home'><button className={style.btnback}> Go Back </button></Link>
         <h1 className={style.title}> Create your own Recipe </h1>
         <form className={style.form} onSubmit={(e) => handleSubmit(e)}>
             <div>
@@ -143,8 +145,8 @@ console.log(error, 'errrrooorr')
                 onChange={(e)=>handleChange(e)}/>
             </div>
             <h3></h3>
-            <label>Diets: </label>
-            <select onChange={(e)=> handleSelect(e)}>
+            <label className={style.labeldiets}>Diets: </label>
+            <select className={style.selectdiets} onChange={(e)=> handleSelect(e)}>
                 {
                     diets1.map( d => (
                         <option value={d} require>{d}</option>
@@ -152,8 +154,12 @@ console.log(error, 'errrrooorr')
                     }
             </select>
             <h3></h3>
-            <button type="submit" > Create </button>
+            <button className={style.btncreate} type="submit" > Create </button>
         </form>
+        <div className={style.newimg}>
+            <img src={fondo} height='400px' width='400px'/>
+        </div>
+
         <div className={style.divs}>
                 {input.types.map(e => 
                  <div>

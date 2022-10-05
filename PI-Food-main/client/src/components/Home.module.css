@@ -19,15 +19,38 @@
 }
 .btnrecargar{
     width: fit-content;
+    color: white;
+    border: 0.5px solid black;;
+    background-color: rgba(1, 4, 7, 0.295);
+    border-radius: 0.5rem;
+    height: 2rem;
+    left: 2rem;
+}
+.btnahome{
+    color: white;
+    background-color: rgba(1, 4, 7, 0.295);
+    border-radius: 0.5rem;
+    border: 0.5px solid black;
+    left: 2rem;
+    
 }
 
-.createBtn{
+.containcreatbtn{
     position: absolute;
     display: flex;
     align-self: flex-end;
     top: 1rem;
+    right: 2rem;
     height: 4rem;
     width: 6rem;
+    font-weight: 500;
+}
+.createBtn{
+    color: white;
+    background-color: rgba(1, 4, 7, 0.295);
+    border-radius: 1rem;
+    border: 0.5px solid black;
+    font-weight: 500;
 }
 
 .filters{

@@ -68,13 +68,13 @@ export default function Home() {
         <div className={style.home}>
 
           <div className={style.recargar}>
-             <Link to='/' > <button>Ir a Home</button> </Link>
+             <Link to='/' > <button className={style.btnahome}>Ir a Home</button> </Link>
              <button className={style.btnrecargar} onClick={e => handleClick(e)}>
               Volver a cargar
              </button>
 
-           <div className={style.createBtn}>
-             <Link to='/createRecipe' > <button> Create your own Recipe </button></Link>
+           <div className={style.containcreatbtn}>
+             <Link to='/createRecipe' > <button className={style.createBtn} > Create your own Recipe </button></Link>
              </div>
          
 

@@ -84,14 +84,15 @@ export function filterDiets(payload){
 
 export function deleteRecipe(id){
     return async function(dispatch){
+        console.log(id, 'wwwewewewewewew')
         try {
-            let deleteAxios = await axios.delete('http://localhost:3005/recipes/'+id);
+            let deleteAxios = await axios.delete('http://localhost:3005/recipes/?id='+id);
             return dispatch({
                 type: 'DELETE_RECIPE',
                 payload: deleteAxios.data
             })
         } catch (err) {
-            
+            console.log(err)
         }
     }
 }

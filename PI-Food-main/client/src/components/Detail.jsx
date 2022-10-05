@@ -1,65 +1,86 @@
 import React from "react";
-import{ Link } from 'react-router-dom'
+import{ Link, useHistory } from 'react-router-dom'
 import { useParams } from "react-router-dom";
-import  { useState, useEffect } from 'react'
+import  {  useEffect } from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import { getDetail, deleteRecipe } from "../actions";
 import style from './Detail.module.css'
-
+import imagen2 from '../imagenes/fondo2.jpg'
 
 
 export default function Detail(){
 
     const dispatch = useDispatch();
-    const paramId = useParams()
-//console.log(props, 'porrrrrrrpspspss')
 
-useEffect(() => {
-    dispatch(getDetail(paramId.id))
+    const history = useHistory()
+
+    const paramId = useParams()
+
+    
+    useEffect(() => {
+        console.log(paramId.id, 'porrrrrrrpspspss')
+        dispatch(getDetail(paramId.id))
 },[dispatch])
 
 const theRecipe = useSelector( state => state.detail)
-console.log(theRecipe, 'recipeeee')
 
 
-function handleDeleteRecipe(id){
-    if(!window.confirm(`Are you sure you want to delete the ${theRecipe.name} recipe?`)) return;
-    dispatch(deleteRecipe(id));       
+
+function handleDeleteRecipe(){
+    // if(window.confirm(`Are you sure you want to delete the ${theRecipe.name} recipe?`)){
+    // }
+
+        dispatch(deleteRecipe(paramId.id));
+    history.push('/home')       
 }
 
     return(
         <div className={style.detail}>
-            <Link to='/home'><button>Go Back</button></Link>
+            <Link to='/home'><button className={style.goback}>Go Back</button></Link>
+
             { 
              paramId.id.length > 9? (<div>
-                <button onClick={(e) => handleDeleteRecipe(e)}>X</button>
+                <div className={style.divclose}>
+                <p className={style.pdelete}>Delete recipe</p>
+                <button className={style.btndelete} onClick={ handleDeleteRecipe}>X</button>
+                </div>
+         <div className={style.headers}>  
                 <h1>{theRecipe.name}</h1>
                 <h3> ID: {theRecipe.id}</h3>
                 <h3>Health Score: {theRecipe.healthScore? theRecipe.healthScore: 'no HS'}</h3>
                 <h3>Types of Diets: {theRecipe.types? theRecipe.types: 'failed'}</h3>
-                <div>
-                    <img className={style.img} src={theRecipe.img} alt="Img failed" width='220px' height='220px'/>
+        </div>    
+                <div className={style.imgresume}>
+                    <img className={style.img} src={theRecipe.img || imagen2} alt="Img failed" width='220px' height='220px'/>
                     <h3 >Resume: {theRecipe.resume? theRecipe.resume : 'no resume'}</h3>
                 </div>
-                    <h3>Step By Step: {theRecipe.stepByStep? theRecipe.stepByStep : 'no steps'}</h3>
+                <div className={style.steps}>
+                    <h3 className={style.step3}>Step By Step: {theRecipe.stepByStep? theRecipe.stepByStep : 'no steps'}</h3>
+                    </div>
              </div>):
-             ( <div>
+             ( 
+             <div >
+<div className={style.headers}>
               <h1>{theRecipe.name}</h1>
               <h3> Health Score: {theRecipe.healthScore}</h3>
               <h3> ID: {theRecipe.id}</h3>
               <h3> Plate Type: {theRecipe.plateType}</h3>
               <h3> Type of Diets: {theRecipe.diets}</h3>
+</div>
+<div className={style.imgresume}>
               <img className={style.img} src={theRecipe.img} alt="Image failed" width='220px' height='220px'/>
-                 <p dangerouslySetInnerHTML={{__html: theRecipe.resume,}}></p>
+                 <p className={style.resume} dangerouslySetInnerHTML={{__html: theRecipe.resume,}}></p>
+ </div>
+
+    <div className={style.steps}>
+                 <h3 className={style.stepstep}> Step By Step: {!theRecipe.stepByStep? 'no steps' : theRecipe.stepByStep.map( el => (
               <div>
-                 <h3> Step By Step: {!theRecipe.stepByStep? 'no steps' : theRecipe.stepByStep.map( el => (
-              <div>
-                 <li>Ingredients Step{el.number}: {el.ingredients.map(e=> (<h3>{e.name}</h3>))} </li>
+                 <li className={style.ingred}>Ingredients Step{el.number}: {el.ingredients.map(e=> (<h3>{e.name +'-'}</h3>))} </li>
                  <li> Step{el.number}: {el.step}</li>
               </div>
                  ))} </h3>
-              </div>
-              </div> )
+    </div>
+              </div>)
     
             }
             

@@ -27,7 +27,7 @@ export default function SearchBar(){
     return (
         <div className={style.container}>
             <input  type="text" placeholder="Search By Name.." onChange={(e)=> handleInputChange(e) } className={style.bar}/>
-            <button className={style.btn} type="submit" onClick={ (e) => handleSubmitBtn(e) }> <ImSearch/> </button>
+            <button className={style.btn} type="submit" onClick={ (e) => handleSubmitBtn(e) }> <ImSearch className={style.icon} /> </button>
         </div>
     )
 }

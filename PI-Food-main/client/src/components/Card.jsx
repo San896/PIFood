@@ -1,8 +1,7 @@
 import React from "react";
 import { Link } from 'react-router-dom';
 import style from './Card.module.css'
-import imagen2 from '../imagenes/fondo2.jpg'
-
+import imagen2 from '../imagenes/fondo1.1'
 
 
 export default function Card({ name, img, types, id }) {

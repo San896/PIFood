@@ -126,6 +126,9 @@ export default function Home() {
              <SearchBar/> 
              </div>
 
+          
+      </div>
+
         <div className={style.pag}>
         <Paginado 
           rPerPage= {rPerPage}
@@ -133,9 +136,6 @@ export default function Home() {
           paginado = {paginado}
           />
           </div>
-          
-      </div>
-
 
 
         <div className={style.cards}>

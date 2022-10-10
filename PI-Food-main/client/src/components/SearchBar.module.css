@@ -1,24 +1,26 @@
 .contenedor{
     display: flex;
     justify-content: center;
+    align-self: center;
 
 }
 .bar{
     display: flex;
     border: 1px solid black;
-    border-radius: 0.5rem;
+    border-radius: 1rem;
     background-color: rgba(128, 128, 128, 0.479);
-    width: 20rem;
+    width: 27rem;
+    height: 1.7rem;
     position: absolute;
-    left: -12rem;
+    left: -15rem;
     color: white;
 }
 .bar::placeholder{
     color: rgba(255, 255, 255, 0.534);
 }
 .bar:hover{
-    width: 20.25rem;
-    height: 1.25rem;
+    width: 27.25rem;
+    height: 1.8rem;
 }
 .bar:focus{
     outline: none;
@@ -26,17 +28,23 @@
 
 .btn{
     display: flex;
+    justify-content: center;
+    text-align: center;
     border: 1px solid black;
-    border-radius: 0.5rem;
+    border-radius: 0.8rem;
     background-color: rgba(0, 0, 0, 0.692);
     color: white;
     font-weight: 400;
     position: absolute;
-    right: -10.5rem;
-    height: 1.4rem;
+    right: -14.5rem;
+    height: 1.8rem;
+}
+
+.icon{
+    align-self: center;
 }
 .btn:hover{
-    height: 1.55rem;
+    height: 1.85rem;
     width: 2rem;
     background-color: rgba(0, 0, 0, 0.877);
 }

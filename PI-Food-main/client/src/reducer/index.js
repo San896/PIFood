@@ -35,19 +35,19 @@ function reducer(state= initialState, { type, payload }){
         case 'ORDER_BY_NAME':
             const allR = state.filtRecipes
          const sortAll = payload === 'asc' ? allR.sort(function(a,b) {
-        if (a.name > b.name) {
+        if (a.name.toLowerCase() > b.name.toLowerCase()) {
           return 1
         }
-        if (a.name < b.name) {
+        if (a.name.toLowerCase() < b.name.toLowerCase()) {
           return -1
         }
         return 0      
       }) : 
          allR.sort(function(a,b) {
-           if (a.name < b.name) {
+           if (a.name.toLowerCase() < b.name.toLowerCase()) {
               return 1
            }
-           if (a.name > b.name) {
+           if (a.name.toLowerCase() > b.name.toLowerCase()) {
            return -1
            }
             return 0      

@@ -1,0 +1,42 @@
+.contenedor{
+    display: flex;
+    justify-content: center;
+
+}
+.bar{
+    display: flex;
+    border: 1px solid black;
+    border-radius: 0.5rem;
+    background-color: rgba(128, 128, 128, 0.479);
+    width: 20rem;
+    position: absolute;
+    left: -12rem;
+    color: white;
+}
+.bar::placeholder{
+    color: rgba(255, 255, 255, 0.534);
+}
+.bar:hover{
+    width: 20.25rem;
+    height: 1.25rem;
+}
+.bar:focus{
+    outline: none;
+}
+
+.btn{
+    display: flex;
+    border: 1px solid black;
+    border-radius: 0.5rem;
+    background-color: rgba(0, 0, 0, 0.692);
+    color: white;
+    font-weight: 400;
+    position: absolute;
+    right: -10.5rem;
+    height: 1.4rem;
+}
+.btn:hover{
+    height: 1.55rem;
+    width: 2rem;
+    background-color: rgba(0, 0, 0, 0.877);
+}

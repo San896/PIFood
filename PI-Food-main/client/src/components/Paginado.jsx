@@ -8,10 +8,10 @@ export default function Pagiando({rPerPage, allRecipes, paginado}){
     }
     return(
         <div className={style.pag}> 
-            <ul className={style.pagul}>
+            <ul className={style.pagul} >
                 { pageNumbers && pageNumbers.map(number =>(
                     <h3 key={number}>
-                      <button onClick={() => paginado(number)}>{number}</button>
+                      <button className={style.pagbtn} onClick={() => paginado(number)}>{number}</button>
                     </h3>
                 ))}
             </ul>

@@ -4,6 +4,7 @@ import Landing from './components/Landing.jsx';
 import Home from './components/Home';
 import Creation from './components/Creation';
 import Detail from './components/Detail';
+import 'normalize.css';
 
 function App() {
   return (

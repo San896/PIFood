@@ -1,81 +1,186 @@
 .create{
     display: flex;
-    background-color: rgba(230, 113, 29, 0.87);
-    height: 46.8vw;
-    width: 100vw;
-    background-position: center;
-    background-repeat: no-repeat;
+    background-image: url('../imagenes/fondocrear.jpg');
     background-size: cover;
-    margin-bottom: 0%;
-    padding-bottom: 0%;
+    background-repeat: no-repeat;
+    height: 100%;
+    min-height: 100vh;
+    background-position: 0px -5rem;
     flex-direction: column;
 }
-
+.containtitle{
+    background-color: rgba(169, 169, 169, 0.404);
+    justify-content: center;
+    position: absolute;
+    width: 100vw;
+    height: 7.5rem;
+}
 .title{
     display: flex;
-    font-weight: normal;
-    text-shadow: 2px 2px 2px rgb(25, 25, 25);
-    border: 2px solid black;
-    border-radius: 1rem;
-    width: fit-content;
-    margin-top: 1%;
-    margin-left: 35%;
+    font-weight: 600;
+    text-shadow: 2px 2px 2px rgb(121, 121, 121); 
+    justify-content: center;
+    margin-top: 3rem;
 }
 
 .form{
     display: flex;
     flex-direction: column;
-    align-self: center;
+    align-self: flex-start;
     border: 2px solid black;
-    border-radius: 1rem;
-    margin-right: 60px;
-    height: 500px;
-    text-align: center;
+    border-radius: 0.7rem;
+    margin-left: 10.3rem;
+    height: 27rem;
+    text-align: start;
     background-color: rgba(169, 169, 169, 0.404);
+    margin-top: 8.5rem;
     
+    width: 18rem;
+}
+.inputsform{
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.404);
+    border: 2px solid rgba(56, 56, 56, 0.658);
+    color: white;
+    margin-left: 1rem;
+    width: 15rem;
+    margin-top: 2.5rem;
+    }
+
+.inputsform::placeholder{
+    color: rgba(255, 255, 255, 0.336);
+}
+.inputsform:focus{
+    outline: none;
+}
+.inputsform:hover{
+    height: 1.2rem;
+    width: 15.2rem;
+    background-color: rgba(0, 0, 0, 0.514);
+    transition: all 0.1s;
 }
 
-.divs{
-    display: flex;
-    flex-direction: row;
-    align-self: center;
-    gap: 1rem;
-   
-    border-radius: 1rem;
-    height: 5rem;
-    text-align: center;
+.labelsform{
+    font-size: large;
+    font-weight: 500;
+    position: absolute;
+    margin-top: 1rem;
+    margin-left: 0.5rem;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.445);
 }
 
 .labeldiets{
-    display: flex;
-    
+    font-size: large;
+    font-weight: 500;
+    margin-left: 1.2rem;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.445); 
 }
 
 .selectdiets{
-    width: fit-content;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.404);
+    border: 2px solid rgba(56, 56, 56, 0.658);
+    color: white;
+    width: 12rem;
+    font-weight: 400;
+    margin-left: 5rem;
+    margin-top: -1.5rem;
+}
+.selectdiets:hover{
+    background-color: rgba(0, 0, 0, 0.877);
+    height: 1.8rem;
+    width: 12.2rem;
+    transition: all 0.2s;
+}
+.selectdiets:focus{
+    outline:none;
 }
 
 .btncreate{
-    width: 4rem;
-    align-self: flex-end;
-    margin-right: 2rem;
+    width: 4.5rem;
+    height: 4.5rem;
+    position: absolute;
     border: 1px solid black;
     border-radius: 9999px;
-    height: 2rem;
     justify-content: center;
+    bottom: 3rem;
+    right: 3rem;
+    background-color: rgba(0, 0, 0, 0.719);
+    color: white;
+    font-weight: 400;
+    font-size: large;
+}
+.btncreate:hover{
+    width: 5rem;
+    height: 5rem;
+    background-color: rgba(0, 0, 0, 0.452);
 }
 
 .btnback{
     border: 1px solid black;
     border-radius: 9999px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
     margin-top: 1rem;
     margin-left: 1rem;
     height: 2rem;
+    position: absolute;
+}
+.btnback:hover{
+    height: 2.2rem;
+    width: 4.8rem;
+    background-color: rgba(0, 0, 0, 0.651);
 }
 
-.newimg{
-    align-self: flex-end;
+.divs{
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    justify-content: center;
+    gap: 1.5rem;
+
+    text-align: center;
     position: absolute;
-    top: 5rem;
+    bottom: 7rem;
+    
 }
+.divsdivs{
+    border: 2px solid black;
+    background-color: rgba(128, 128, 128, 0.534);
+    border-radius: 10px;
+    font-weight: 500;
+    height: 5rem;
+    width: 6rem;
+    gap:2rem;
+    justify-content: center;
+}
+.btndiets{
+    border-radius: 9999px;
+    border: 1.5px solid black;
+    background-color: rgba(255, 0, 0, 0.432);
+    height: 1.2rem;
+    width: 1.2rem;
+    font-weight: 500;
+    font-size: x-small;
+    color: white;
+    position: absolute;
+    margin-top: 1px;
+    right: 3px;
+
+}
+
+.btndiets:hover{
+    background-color: rgba(255, 0, 0, 0.678);
+    height: 1.3rem;
+    width: 1.3rem;
+}
+
+.pdiets{
+    display: flex;
+    position: absolute;
+    margin-top: 2rem;
+    margin-left: 0.5rem;
+}
+
+
 

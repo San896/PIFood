@@ -1,31 +1,60 @@
 .card{
     border: 1px solid black;
     border-radius: 0.5rem;
-    background-color: rgba(1, 4, 7, 0.295);
+    background-color: rgba(100, 101, 102, 0.753);
     display: flex;
     flex-direction: column;
     
-    height: 20rem;
-    width: 15rem;
+    height: 15rem;
+    width: 10rem;
     align-items: center;
-    margin-left: 6rem;
+    margin-left: 2rem;
+    
+}
+
+.card:hover{
+    height: 15.2rem;
+    width: 10.2rem;
+    background-color: rgba(100, 101, 102, 0.808);
+    transition: all 0.2s;
 }
 
 .name{
     margin-top: 0.5rem;
-    width: 15rem;
+    width: fit-content;
     text-align: center;
+    font-size: smaller;
+    
 }
 
 .diets{
     margin-top: 0.1rem;
+    font-size: x-small;
 }
 
 .img {
     border-radius: 0.5rem;
+    width: 8rem;
 
 }
 
 .id{
-    margin-top: 0.1rem;
+    margin-top: 5px;
+    margin-right: 5rem;
+}
+
+.btninfo{
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: rgba(5, 5, 5, 0.397);
+    height: 1.5rem;
+    width: 3rem;
+    text-align: center;
+    margin-left: 6rem;
+    margin-top: 5px;
+    font-weight: 600;
+}
+
+.btninfo:hover{
+    background-color: rgba(5, 5, 5, 0.582);
 }

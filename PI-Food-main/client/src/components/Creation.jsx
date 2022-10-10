@@ -88,63 +88,83 @@ console.log(error, 'errrrooorr')
 
   return (
     <div className={style.create}>
-        <Link to='/home'><button className={style.btnback}> Go Back </button></Link>
-        <h1 className={style.title}> Create your own Recipe </h1>
+        <div className={style.containtitle}>
+            <Link to='/home'><button className={style.btnback}> Go Back </button></Link>
+            <h1 className={style.title}> Create your own Recipe </h1>
+        </div>
+
+
         <form className={style.form} onSubmit={(e) => handleSubmit(e)}>
             <div>
-                <label>Name: </label>
+                <label className={style.labelsform}>Name: </label>
+                <div>
                 <input 
-                placeholder="Name"
+                className={style.inputsform}
+                placeholder="Name..."
                 type="text" 
                 value={input.name} 
                 name='name' 
                 required
                 onChange={(e)=>handleChange(e)}/>
                 {error.name && ( <p>{error.name}</p>)}  
+                </div>
             </div>
-            <h3></h3>
+            
             <div>
-                <label>Resume: </label>
+                <label className={style.labelsform}>Resume: </label>
+                <div>
                 <input 
-                placeholder="Resume"
+                className={style.inputsform}
+                placeholder="Resume..."
                 type="text" 
                 value={input.resume} 
                 name='resume' 
                 required
                 onChange={(e)=>handleChange(e)}/>
                 {error.resume && ( <p>{error.resume}</p>)} 
+                </div>
             </div>
-            <h3></h3>
+            
             <div>
-                <label>Haelth Score: </label>
+                <label className={style.labelsform}>Haelth Score: </label>
+                <div>
                 <input 
-                placeholder="Haelth Score"
+                className={style.inputsform}
+                placeholder="Haelth Score..."
                 type="number" 
                 value={input.healthScore} 
                 name='healthScore' 
                 onChange={(e)=>handleChange(e)}/>
+                </div>
             </div>
-            <h3></h3>
+            
             <div>
-                <label>Step By Step: </label>
+                <label className={style.labelsform}>Step By Step: </label>
+                <div>
                 <input 
-                placeholder="Step By Step"
+                className={style.inputsform}
+                placeholder="Step By Step..."
                 type="text" 
                 value={input.stepByStep} 
                 name='stepByStep' 
                 onChange={(e)=>handleChange(e)}/>
+                </div>
             </div>
-            <h3></h3>
+           
             <div>
-                <label>Image: </label>
+                <label className={style.labelsform}>Image: </label>
+                <div>
                 <input 
-                placeholder="Image"
+                className={style.inputsform}
+                placeholder="Image..."
                 type="text" 
                 value={input.img} 
                 name='img' 
                 onChange={(e)=>handleChange(e)}/>
+                </div>
             </div>
             <h3></h3>
+
             <label className={style.labeldiets}>Diets: </label>
             <select className={style.selectdiets} onChange={(e)=> handleSelect(e)}>
                 {
@@ -153,21 +173,22 @@ console.log(error, 'errrrooorr')
                         ) )                    
                     }
             </select>
+
             <h3></h3>
+
             <button className={style.btncreate} type="submit" > Create </button>
         </form>
-        <div className={style.newimg}>
-            <img src={fondo} height='400px' width='400px'/>
-        </div>
+
 
         <div className={style.divs}>
                 {input.types.map(e => 
-                 <div>
-                    <p>{e}</p>
-                    <button onClick={() => handleDelete(e)}>X</button>
+                 <div className={style.divsdivs}>
+                    <button className={style.btndiets} onClick={() => handleDelete(e)}>X</button>
+                    <p className={style.pdiets}>{e}</p>
                  </div>
                 )}
                 </div>
+
     </div>
   )
 }

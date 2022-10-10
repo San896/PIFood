@@ -5,9 +5,12 @@ import { getRecipes, getTypes, orderByName, orderHs, filterCreated, filterDiets 
 import { Link } from 'react-router-dom';
 import Card from './Card';
 import Paginado from "./Paginado";
-import SearchBar from './SearchBar'
-import style from './Home.module.css'
+import SearchBar from './SearchBar';
+import style from './Home.module.css';
+import { FaHome } from 'react-icons/fa';
+import { IoReload } from 'react-icons/io5';
 
+ 
 export default function Home() {
 
   const dispatch = useDispatch()
@@ -16,7 +19,7 @@ export default function Home() {
   const [order, setOrder] = useState('')
   // ver bien el estado order para que es
   const [ currentP, setCurrentP ] = useState(1)
-  const [ rPerPage, setRperPage ] = useState(9)
+  const [ rPerPage, setRperPage ] = useState(10)
   const lastRecipe = currentP * rPerPage
   const firstRecipe = lastRecipe - rPerPage
   const recipesPerPage =  allRecipes.slice(firstRecipe, lastRecipe) //0 a 9 el slice deja fuera el ultimo
@@ -64,64 +67,64 @@ export default function Home() {
     return(
       <div className={style.gralcontainer}>
 
-      
-        <div className={style.home}>
+      <div className={style.home}>
 
-          <div className={style.recargar}>
-             <Link to='/' > <button className={style.btnahome}>Ir a Home</button> </Link>
+        <div className={style.recargar}>
+
+             <Link to='/' > <button className={style.btnahome}> <FaHome/> </button> </Link>
              <button className={style.btnrecargar} onClick={e => handleClick(e)}>
-              Volver a cargar
-             </button>
+              <IoReload/>
+             </button> 
 
-           <div className={style.containcreatbtn}>
-             <Link to='/createRecipe' > <button className={style.createBtn} > Create your own Recipe </button></Link>
-             </div>
-         
+            <div className={style.containcreatbtn}>
+             <Link to='/createRecipe' > <button className={style.createBtn} > Create Recipe </button></Link>
+              </div>
+                  
+            <div className={style.filters}>
 
-             
-      <div className={style.filters}>
-        <div>
-        <div>Order By Name: </div>
-          <select onChange={e => handleOrder(e)} >
-            <option value="asc"> A - Z </option>
-            <option value="desc"> Z - A </option>
-          </select>
-          </div>
+              <div>
+                  <select className={style.selects} onChange={e => handleOrder(e)} >
+                   <option> Order </option>
+                   <option value="asc"> A - Z </option>
+                   <option value="desc"> Z - A </option>
+                  </select>
+              </div>
 
-        <div>
-         <div>Order By HealthScore:</div>
-          <select onChange={e => handleHs(e)} >
-            <option value="High"> Higher Hs</option>
-            <option value="Low"> Lower Hs</option>
-         </select>
-        </div>
+              <div>
+                <select className={style.selects} onChange={e => handleHs(e)} >
+                  <option> HealthScore </option>
+                  <option value="High"> Higher Hs</option>
+                  <option value="Low"> Lower Hs</option>
+                </select>
+              </div>
         
-        <div>
-        <div>Filter Existent or Created </div>
-          <select onChange={e => handleCreated(e)} >
-            <option value="all">Todos</option>
-            <option value="created">Creados</option>
-            <option value="existent">Existentes</option>
-          </select>
-        </div> 
+              <div>
+                  <select className={style.selects} onChange={e => handleCreated(e)} >
+                    <option value="all">All</option>
+                    <option value="created">Created</option>
+                    <option value="existent">Existent</option>
+                  </select>
+              </div> 
         
-        <div>
-          <div>Filter By Diet: </div>
-          <select onChange={e => handleDiets(e)}>
-            <option value="all"> All </option>
-            {
-              allDiets?.map( e => {
-                return <option value={e} key={e.id}>{e}</option>
-              })
-            }
-          </select>
-        </div>
-        </div>
+              <div>
+                <select className={style.selects} onChange={e => handleDiets(e)}>
+                  <option value="all"> Diets </option>
+                    {
+                    allDiets?.map( e => {
+                      return <option value={e} key={e.id}>{e}</option>
+                    })
+                    }
+                </select>
+              </div>
+
+              </div>
+
         </div>
 
-        <div className={style.search}>         
+
+          <div className={style.search}>         
              <SearchBar/> 
-        
+             </div>
 
         <div className={style.pag}>
         <Paginado 
@@ -130,8 +133,8 @@ export default function Home() {
           paginado = {paginado}
           />
           </div>
-        </div>
-        </div>
+          
+      </div>
 
 
 

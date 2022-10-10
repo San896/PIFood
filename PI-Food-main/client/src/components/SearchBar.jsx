@@ -2,6 +2,8 @@ import React from "react";
 import { useState } from'react';
 import { useDispatch } from "react-redux";
 import { searchByName } from "../actions";
+import style from './SearchBar.module.css'
+import { ImSearch } from 'react-icons/im';
 
 export default function SearchBar(){
 
@@ -23,9 +25,9 @@ export default function SearchBar(){
 
 
     return (
-        <div>
-            <input type="text" placeholder="Search By Name.." onChange={(e)=> handleInputChange(e) } />
-            <button type="submit" onClick={ (e) => handleSubmitBtn(e) }> Search </button>
+        <div className={style.container}>
+            <input  type="text" placeholder="Search By Name.." onChange={(e)=> handleInputChange(e) } className={style.bar}/>
+            <button className={style.btn} type="submit" onClick={ (e) => handleSubmitBtn(e) }> <ImSearch/> </button>
         </div>
     )
 }

@@ -5,7 +5,7 @@ import  {  useEffect } from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import { getDetail, deleteRecipe } from "../actions";
 import style from './Detail.module.css'
-import imagen2 from '../imagenes/fondo1.jpg'
+import imagen2 from '../imagenes/fondo 2.2 mediano.jpg'
 
 
 export default function Detail(){

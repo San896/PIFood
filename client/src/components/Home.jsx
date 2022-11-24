@@ -16,10 +16,10 @@ export default function Home() {
   const dispatch = useDispatch()
   const allRecipes = useSelector ( (state) => state.recipes)
   const allDiets = useSelector ( (state) => state.diets)
-  const [order, setOrder] = useState('')
+  const [,setOrder] = useState('')
   // ver bien el estado order para que es
   const [ currentP, setCurrentP ] = useState(1)
-  const [ rPerPage, setRperPage ] = useState(10)
+  const [ rPerPage,  ] = useState(10)
   const lastRecipe = currentP * rPerPage
   const firstRecipe = lastRecipe - rPerPage
   const recipesPerPage =  allRecipes.slice(firstRecipe, lastRecipe) //0 a 9 el slice deja fuera el ultimo

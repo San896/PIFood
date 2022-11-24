@@ -20,7 +20,7 @@ export default function Detail(){
     useEffect(() => {
         console.log(paramId.id, 'porrrrrrrpspspss')
         dispatch(getDetail(paramId.id))
-},[dispatch])
+},[dispatch, paramId.id])
 
 const theRecipe = useSelector( state => state.detail)
 
@@ -80,7 +80,7 @@ function handleDeleteRecipe(){
                     <h4> Type of Diets: {theRecipe.diets+''}</h4>
                 </div>
                 <div className={style.imgresume}>
-                    <img className={style.img} src={theRecipe.img} alt="Image failed" width='220px' height='220px'/>
+                    <img className={style.img} src={theRecipe.img} alt=" img failed" width='220px' height='220px'/>
                     <p className={style.resume} dangerouslySetInnerHTML={{__html: theRecipe.resume,}}></p>
                 </div>
                 <div className={style.steps}>

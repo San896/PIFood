@@ -4,7 +4,7 @@ import  { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import { postRecipe, getTypes } from "../actions";
 import style from './Creation.module.css'
-import fondo from '../imagenes/cooking.png'
+//import fondo from '../imagenes/cooking.png'
 
 
 function validate(input){
@@ -163,7 +163,7 @@ console.log(error, 'errrrooorr')
                 onChange={(e)=>handleChange(e)}/>
                 </div>
             </div>
-            <h3></h3>
+            <hr></hr>
 
             <label className={style.labeldiets}>Diets: </label>
             <select className={style.selectdiets} onChange={(e)=> handleSelect(e)}>
@@ -174,7 +174,7 @@ console.log(error, 'errrrooorr')
                     }
             </select>
 
-            <h3></h3>
+            <hr></hr>
 
             <button className={style.btncreate} type="submit" > Create </button>
         </form>

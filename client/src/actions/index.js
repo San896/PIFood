@@ -3,7 +3,7 @@ import axios from 'axios';
 
 export function getRecipes(){
     return async function(dispatch){
-        let recipesAxios =  await axios('http://localhost:3005/recipes')
+        let recipesAxios =  await axios('/recipes')
         return dispatch({
             type: 'GET_RECIPES',
             payload: recipesAxios.data
@@ -13,7 +13,7 @@ export function getRecipes(){
 
 export function getTypes(){
     return async function(dispatch){
-        let axiosType =  await axios('http://localhost:3005/types')
+        let axiosType =  await axios('/types')
         return dispatch({
             type: 'GET_DIETS',
             payload: axiosType.data
@@ -24,7 +24,7 @@ export function getTypes(){
 export function getDetail(id){
     return async function(dispatch){
         try {
-            let axiosId = await axios('http://localhost:3005/recipes/'+id)
+            let axiosId = await axios('/recipes/'+id)
             return dispatch({
                 type: 'GET_DETAIL',
                 payload: axiosId.data
@@ -37,7 +37,7 @@ export function getDetail(id){
 
 export function postRecipe(payload){
     return async function(dispatch){
-        const axiosPost = await axios.post('http://localhost:3005/recipes',payload)
+        const axiosPost = await axios.post('/recipes',payload)
         return axiosPost
     }
 }
@@ -45,7 +45,7 @@ export function postRecipe(payload){
 export function searchByName(name){
     return async function(dispatch){
         try {
-            let searchAxios = await axios('http://localhost:3005/recipes?name=' + name);
+            let searchAxios = await axios('/recipes?name=' + name);
                 return dispatch({
                     type: 'SEARCH_BY_NAME',
                     payload: searchAxios.data
@@ -84,9 +84,9 @@ export function filterDiets(payload){
 
 export function deleteRecipe(id){
     return async function(dispatch){
-        console.log(id, 'wwwewewewewewew')
+        
         try {
-            let deleteAxios = await axios.delete('http://localhost:3005/recipes/?id='+id);
+            let deleteAxios = await axios.delete('/recipes/?id='+id);
             return dispatch({
                 type: 'DELETE_RECIPE',
                 payload: deleteAxios.data

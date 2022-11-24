@@ -8,6 +8,9 @@ import { Provider } from "react-redux";
 import { store } from "./store"
 import { BrowserRouter } from "react-router-dom"
 
+
+axios.defaults.baseURL = process.env.REACT_APP_API || process.env.REACT_APP_DEPLOY;
+
 ReactDOM.render(
   <Provider store={store}>
    <React.StrictMode>

@@ -19,7 +19,9 @@ export function getTypes(){
             payload: axiosType.data
         })
     }
+
 }
+
 
 export function getDetail(id){
     return async function(dispatch){

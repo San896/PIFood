@@ -1,44 +1,110 @@
 
 .general{
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    background-image: url('../imagenes/madverde.jpg');
+    display: flex;
+    flex-direction: column;
+    /* grid-template-columns: repeat(2, 1fr); */
+    background-image: url('../imagenes/rest1.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     /* background-position: -1px -10rem; */
     min-height: 100vh;
-    
+    justify-content: center;
+    align-items: center;
     }
     
 .contenedor{
+    display: flex;
+    flex-direction: column;
     justify-content: center;
-    margin-left: 5rem;
+    align-items: center;
     text-align: center;
+    
+}
+.header1{
+    margin-top: 0%;
+    position: relative;
+    font-size: 1.6cm;
+     /* 
+     font-weight: 600;  
+    */
+    
+   color: rgba(255, 255, 255, 0.87);
 }
 
 .header{
-    margin-top: 8rem;
-    font-size: 1.6cm;
-    font-weight: 600;
+    bottom: 0%;
+    display: inline-block;
+    position: relative;
+
+    /* margin-top: 8rem; */
+      font-size: 0.7cm; 
+     font-weight: 400; 
     width: 20rem;
-   color: rgba(255, 172, 64, 0.63);
+   color: rgba(255, 255, 255, 0.616);
+}
+.header::after, .header::before {
+    content:'';
+    position: absolute;
+    width: 180px;
+    height: 2.5px;
+    background-color: currentColor;
+    top: 0.6em;
+    /* transform: scale(0); */
+    transition: all 0.3s ease-in;
+}
+.header:hover::after, .header:hover::before {
+    transform: scale(1);
+}
+
+.header::after{
+    right: -130px;
+}
+.header::before{
+    left: -130px;
 }
 
 .contBtn{
-   margin-top: 29rem;
+   
    text-align: center;
-   margin-left: 10rem;
+   
 }
 .btn{
-    color: rgba(255, 172, 64, 0.63);
+    display: inline-block;
+    position: relative;
+    color: rgba(255, 255, 255, 0.767);
     background-color: transparent;
     border:none;
-    font-size: 2rem;
-    font-weight: 600;
+    
+
+    font-size: 1.8rem;
+    font-weight: 400;
+
+
 }
 
-.btn:hover{
-    font-size: 2.2rem;
-    background-color: rgba(128, 128, 128, 0.144);
-    border-radius: 1rem;
+ .btn:hover{
+    font-weight: 500;
+    background-color: rgba(128, 128, 128, 0.233);
+    border-radius: 7px;
+
+} 
+.btn::after, .btn::before {
+    content:'';
+    position: absolute;
+    width: 80px;
+    height: 2px;
+    background-color: currentColor;
+    top: 0.6em;
+     transform: scale(0); 
+    transition: all 0.3s ease-in;
+}
+.btn:hover::after, .btn:hover::before {
+    transform: scale(1);
+}
+
+.btn::after{
+    right: -100px;
+}
+.btn::before{
+    left: -100px;
 }

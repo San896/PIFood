@@ -2,11 +2,12 @@
 .general{
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    background-image: url('../imagenes/fondo\ grande.jpg');
+    background-image: url('../imagenes/madverde.jpg');
     background-size: cover;
     background-repeat: no-repeat;
-    background-position: -1px -10rem;
+    /* background-position: -1px -10rem; */
     min-height: 100vh;
+    
     }
     
 .contenedor{

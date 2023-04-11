@@ -7,44 +7,46 @@
 .bar{
     display: flex;
     border: 1px solid black;
-    border-radius: 1rem;
+    border-radius: 0.5rem;
     background-color: rgba(128, 128, 128, 0.479);
     width: 27rem;
     height: 1.7rem;
     position: absolute;
-    left: -15rem;
+    left: -16rem;
     color: white;
 }
 .bar::placeholder{
     color: rgba(255, 255, 255, 0.534);
 }
-.bar:hover{
-    width: 27.25rem;
-    height: 1.8rem;
-}
-.bar:focus{
-    outline: none;
-}
+/* .bar:hover{
+    transform: translateY(1%);
+     transition: all 0.2s; 
+} */
+ .bar:focus{
+    outline: 1px rgb(109, 109, 109) solid;
+} 
 
 .btn{
     display: flex;
     justify-content: center;
     text-align: center;
-    border: 1px solid black;
+    border: none;
     border-radius: 0.8rem;
-    background-color: rgba(0, 0, 0, 0.692);
-    color: white;
+    background-color: transparent;
+    color: rgb(255, 255, 255, 0.534);
     font-weight: 400;
     position: absolute;
-    right: -14.5rem;
+    right: -11rem;
     height: 1.8rem;
+}
+
+.btn:hover{
+    transform: translateY(-1%);
+    /* transition: all 0.2s; */
+    /* box-shadow: 2px 2px 8px rgba(114, 114, 114, 0.9); */
+    color: rgb(221, 221, 221);
 }
 
 .icon{
     align-self: center;
-}
-.btn:hover{
-    height: 1.85rem;
-    width: 2rem;
-    background-color: rgba(0, 0, 0, 0.877);
 }

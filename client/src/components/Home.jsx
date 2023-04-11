@@ -9,6 +9,7 @@ import SearchBar from './SearchBar';
 import style from './Home.module.css';
 import { FaHome } from 'react-icons/fa';
 import { IoReload } from 'react-icons/io5';
+import { IoCreateOutline } from 'react-icons/io5';
 
  
 export default function Home() {
@@ -77,7 +78,7 @@ export default function Home() {
              </button> 
 
             <div className={style.containcreatbtn}>
-             <Link to='/createRecipe' > <button className={style.createBtn} > Create Recipe </button></Link>
+             <Link to='/createRecipe' > <button className={style.createBtn} > Create <IoCreateOutline/> </button></Link>
               </div>
                   
             <div className={style.filters}>
@@ -92,9 +93,9 @@ export default function Home() {
 
               <div>
                 <select className={style.selects} onChange={e => handleHs(e)} >
-                  <option> HealthScore </option>
-                  <option value="High"> Higher Hs</option>
-                  <option value="Low"> Lower Hs</option>
+                  <option> HS </option>
+                  <option value="High"> Higher </option>
+                  <option value="Low"> Lower </option>
                 </select>
               </div>
         

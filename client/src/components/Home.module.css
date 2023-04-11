@@ -22,37 +22,42 @@
     top:0.75rem;
     display: flex;
     flex-direction: column;
+    justify-content: center;
 
 }
 .btnrecargar{
-    border: 1px solid black;
+    border: none;
     border-radius: 0.5rem;
-    background-color: rgba(0, 0, 0, 0.692);
+    background-color: transparent;
     color: white;
     font-weight: 400;
     width: fit-content;
     height: 1.5rem;
     position: absolute;
-    left: 2rem;
-    top: 2rem;
+    left: 1rem;
+    top: 2.1rem;
 }
 .btnrecargar:hover{
     background-color: rgba(0, 0, 0, 0.877);
-    height: 1.6rem;
+    transform: translateY(-3%);
+    transition: all 0.2s;
+    box-shadow: 2px 2px 10px rgba(114, 114, 114, 0.9);
 }
 .btnahome{
-    border: 1px solid black;
+    border: none;
     border-radius: 0.5rem;
-    background-color: rgba(0, 0, 0, 0.692);
+    background-color: transparent;
     color: white;
     font-weight: 400;
     position: absolute;
     left: 1rem;
-    top: 4px;
+    top: 0.4rem;
 }
 .btnahome:hover{
     background-color: rgba(0, 0, 0, 0.877);
-    height: 1.5rem; 
+    transform: translateY(-3%);
+    transition: all 0.2s;
+    box-shadow: 2px 2px 10px rgba(114, 114, 114, 0.9);
 }
 
 .containcreatbtn{
@@ -60,41 +65,47 @@
     display: flex;
     align-self: flex-end;
     top: 1rem;
-    right: 2rem;
+    right: 0.2rem;
     height: 4rem;
     width: 6rem;
-    font-weight: 400;
+    
 }
 .createBtn{
-    border: 1px solid black;
+    border: none;
     border-radius: 0.5rem;
-    background-color: rgba(0, 0, 0, 0.692);
+    background-color: transparent;
     color: white;
     font-weight: 400;
+    height: 2rem;
 }
 .createBtn:hover{
-    background-color: rgba(0, 0, 0, 0.877);
-    height: 3rem; 
+    background-color: rgba(17, 17, 17, 0.877);
+    transform: translateY(-3%);
+    transition: all 0.2s;
+    box-shadow: 2px 2px 10px rgba(114, 114, 114, 0.9);
+    
 }
 
 .filters{
     display: flex;
-    align-self: center;
+    align-self: flex-end;
     justify-content: center;
     flex-direction: row;
     position: absolute;
     top: 4.5rem;
-    gap: 2rem;
+    gap: 0.7rem;
+    right: 1.5rem;
 }
 
 .selects{
     display: flex;
+    border: none;
     border-radius: 0.5rem;
-    background-color: rgba(0, 0, 0, 0.692);
+    background-color: transparent;
     color: white;
     font-weight: 400;
     height: fit-content;
-    width: fit-content;
+    width: 4rem;
     justify-content: center;
     font-size: small;
 }
@@ -108,18 +119,20 @@
     justify-content: center;
     align-self: center;
     position: absolute;
-    top: 25px;
+    top: 1rem;
+   
 }
 
 
 .pag{
     display: flex;
     flex-direction: row;
+    justify-content: center;
     align-self: center;
     align-items: center;
     position: absolute;
-    top: 4.5rem;
-    right: 40rem;
+    top: 2.5rem;
+    right: 47vw;
 }
 
 .cards{

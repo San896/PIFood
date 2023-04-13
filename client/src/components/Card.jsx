@@ -15,8 +15,11 @@ export default function Card({ name, img, types, id }) {
             </Link>
 
             <h3 className={style.name}>{ name }
+            
             <Link to={'/detail/'+id} className={style.link}> <button className={style.btninfo}> <BsInfoCircle className={style.icon}/> </button></Link>
             </h3>
+            
         </div>
     )
 };
+

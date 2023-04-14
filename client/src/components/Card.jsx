@@ -14,10 +14,20 @@ export default function Card({ name, img, types, id }) {
             <img className={style.img} src={img || imagen2} alt='imagen failed' />
             </Link>
 
-            <h3 className={style.name}>{ name }
-            
-            <Link to={'/detail/'+id} className={style.link}> <button className={style.btninfo}> <BsInfoCircle className={style.icon}/> </button></Link>
-            </h3>
+
+            <div>
+
+            <div className={style.name}>
+                { name }
+                        
+                <Link to={'/detail/'+id} className={style.link}>
+                    <button className={style.btninfo}> 
+                        <BsInfoCircle className={style.icon}/> 
+                    </button>
+                        <h3 className={style.h3}> {types} </h3> 
+            </Link>
+            </div>
+            </div>
             
         </div>
     )

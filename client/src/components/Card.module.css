@@ -60,7 +60,7 @@
     margin-bottom: 0%;
     border-top-left-radius: 0.5rem;
     border-top-right-radius: 0.5rem;
-    /* z-index: 0;   */
+     z-index: 0;   
   
     width: 100%;
     height: 100%;
@@ -86,9 +86,6 @@
    
 }
 
-/* .btninfo:hover{
-    background-color: rgba(5, 5, 5, 0.582);
-} */
 
 .link{
     text-decoration: none;
@@ -105,3 +102,29 @@
     transition: all 0.2s;
     box-shadow: 3px 3px 15px rgba(114, 114, 114, 0.9);
 }
+
+
+.h3{
+    display: flex;
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.87);
+    color: black;
+    border-radius: 5px;
+    height: fit-content;
+    width: 120px;
+    font-size: smaller;
+    font-weight: 300;
+    text-align: center;
+    align-self: center;
+    z-index: 1; 
+    opacity: 0;
+    transform: translate(-50px, -40px); 
+    transition: transform 0.8s ease, opacity 0.8s ease;
+}
+
+
+.link:hover h3{
+    transform: translate(-50px, -50px);
+    opacity: 1;
+    z-index: 1;
+} 

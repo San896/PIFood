@@ -25,10 +25,19 @@
     display: flex;
     position: absolute;
     flex-direction: column;
-    width: 14rem;
-    font-size: small;
+    width: 22rem;
+    height: 15rem;
+    
+    font-weight: 300;
+    
+    word-wrap: break-word;
+    word-spacing: 1px;
+    
     left: 55rem;
     top: 8rem;
+    justify-self: center;
+    align-self: center;
+    
 }
 .imgresume{
     display: flex;
@@ -71,8 +80,12 @@
 
 
 .resume{
-    height: 5rem;
+    height: fit-content;
     width: 30rem;
+    font-size: small;
+    justify-self: center;
+    align-self: center;
+    
 }
 
 
@@ -92,8 +105,16 @@
 
 .ingred{
     display: flex;
-    font-size: x-small;
+    align-self: center;
+    justify-self: center;
+}
 
+.ingred h5 {
+    display: flex;
+    font-size: small;
+    font-weight: 400;
+    align-self: center;
+    justify-self: center;
 }
 .step3{
     display: flex;

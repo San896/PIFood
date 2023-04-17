@@ -74,10 +74,10 @@ function handleDeleteRecipe(){
                 </div>
 
                 <div className={style.headers}>
-                    <h4> Health Score: {theRecipe.healthScore}</h4>
-                    <h4> ID: {theRecipe.id}</h4>
-                    <h4> Plate Type: {theRecipe.plateType+''}</h4>
-                    <h4> Type of Diets: {theRecipe.diets+''}</h4>
+                    <h5> Health Score: {theRecipe.healthScore}</h5>
+                    <h5> ID: {theRecipe.id}</h5>
+                    <h5> Plate Type: {theRecipe.plateType+''}</h5>
+                    <h5> Type of Diets: {theRecipe.diets+''}</h5>
                 </div>
                 <div className={style.imgresume}>
                     <img className={style.img} src={theRecipe.img} alt=" img failed" width='220px' height='220px'/>
@@ -85,9 +85,9 @@ function handleDeleteRecipe(){
                 </div>
                 <div className={style.steps}>
                     <h3 className={style.stepstep}> Step By Step: {!theRecipe.stepByStep? 'no steps' : theRecipe.stepByStep.map( el => (
-                    <div>
-                        <li className={style.ingred}>Ingredients Step{el.number}: {el.ingredients.map(e=> (<h3>{e.name +'-'}</h3>))} </li>
+                        <div>
                         <li> Step{el.number}: {el.step}</li>
+                        <li className={style.ingred}>Ingredients Step{el.number}: {el.ingredients.map(e=> (<h5>{e.name +'-'}</h5>))} </li>
                     </div>
                  ))}
                   </h3>

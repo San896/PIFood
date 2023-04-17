@@ -51,7 +51,7 @@
     font-weight: 400;
     position: absolute;
     left: 1rem;
-    top: 0.4rem;
+    top: 0.5rem;
 }
 .btnahome:hover{
     background-color: rgba(0, 0, 0, 0.877);
@@ -132,7 +132,7 @@
     align-self: center;
     align-items: center;
     position: absolute;
-    top: 3.5rem;
+    top: 2.3rem;
     right: 47vw;
 }
 

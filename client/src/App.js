@@ -6,6 +6,7 @@ import Creation from './components/Creation';
 import Detail from './components/Detail';
 import 'normalize.css';
 
+
 function App() {
   return (
     <div className="App">

@@ -22,22 +22,27 @@
     text-shadow: 2px 2px 2px rgba(3, 3, 3, 0.486);
 }
 .headers{
-    display: flex;
+    display: block;
     position: absolute;
     flex-direction: column;
     width: 22rem;
     height: 15rem;
-    
+   
     font-weight: 300;
-    
+    font-size: large;
+    justify-content: center;
     word-wrap: break-word;
-    word-spacing: 1px;
-    
     left: 55rem;
-    top: 8rem;
+    top: 7rem;
     justify-self: center;
     align-self: center;
-    
+   
+}
+
+.haeaders h5{
+    display: flex;
+    margin-top: 0%;
+    margin-bottom: 0%
 }
 .imgresume{
     display: flex;
@@ -82,7 +87,7 @@
 .resume{
     height: fit-content;
     width: 30rem;
-    font-size: small;
+    
     justify-self: center;
     align-self: center;
     
@@ -90,7 +95,7 @@
 
 
 .steps{
-    display: flex;
+    display: block;
     flex-direction: column;
     margin-top: 20rem;
     background-color: rgba(100, 100, 100, 0.514);
@@ -99,22 +104,26 @@
 .stepstep{
     display: flex;
     flex-direction: column;
-    font-size: x-small;
+    font-size: small;
 
 }
 
 .ingred{
     display: flex;
-    align-self: center;
-    justify-self: center;
+    flex-direction: row;
+    margin: 5px;
+    /* align-self: center;
+    justify-self: center; */
 }
 
 .ingred h5 {
     display: flex;
+    margin-top: 0%;
+    margin-bottom: 0%;
+    align-self: flex-start;
     font-size: small;
     font-weight: 400;
-    align-self: center;
-    justify-self: center;
+
 }
 .step3{
     display: flex;

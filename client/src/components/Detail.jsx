@@ -84,13 +84,13 @@ function handleDeleteRecipe(){
                     <p className={style.resume} dangerouslySetInnerHTML={{__html: theRecipe.resume,}}></p>
                 </div>
                 <div className={style.steps}>
-                    <h3 className={style.stepstep}> Step By Step: {!theRecipe.stepByStep? 'no steps' : theRecipe.stepByStep.map( el => (
+                    <div className={style.stepstep}> Step By Step: {!theRecipe.stepByStep? 'no steps' : theRecipe.stepByStep.map( el => (
                         <div>
                         <li> Step{el.number}: {el.step}</li>
-                        <li className={style.ingred}>Ingredients Step{el.number}: {el.ingredients.map(e=> (<h5>{e.name +'-'}</h5>))} </li>
+                        <li className={style.ingred}>Ingredients Step{el.number}: ''{el.ingredients.map(e=> (<h5>{e.name +';'}</h5>))} ''</li>
                     </div>
                  ))}
-                  </h3>
+                  </div>
                 </div>
 
               </div>)

@@ -58,7 +58,7 @@ function handleDeleteRecipe(){
         </div>    
                 <div className={style.imgresume}>
                     <img className={style.img} src={theRecipe.img || imagen2} alt="Img failed" width='220px' height='220px'/>
-                    <h3 >Resume: {theRecipe.resume? theRecipe.resume : 'no resume'}</h3>
+                    <h3 className={style.resume} >Resume: {theRecipe.resume? theRecipe.resume : 'no resume'}</h3>
                 </div>
 
                     <div className={style.steps}>

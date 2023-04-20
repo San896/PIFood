@@ -180,17 +180,28 @@ export default function Creation(){
         </form>
 
 
+                    { input.name ? 
         <div className={style.divs}>
+                    
+                <h1>{input.name}</h1>
+                <h3>{input.resume}</h3>
+                <h3> Hs: {input.healthScore}</h3>
+                <h4>{input.stepByStep}</h4>
+                {/* <img src={input.img} alt=""/> */}
+                {  input.img? <img src={input.img} alt=""/> : ''  }
+                
+                        
+                        <div className={style.eldiv}>
                 {input.types.map(e => 
                  <div className={style.divsdivs}>
                     <button className={style.btndiets} onClick={() => handleDelete(e)}>X</button>
                     <p className={style.pdiets}>{e}</p>
                  </div>
+
                 )}
-                <h2>{input.name}</h2>
-                <h2>{input.resume}</h2>
-                <h2>{input.healthScore}</h2>
                 </div>
+
+                </div> : '' }
 
     </div>
   )

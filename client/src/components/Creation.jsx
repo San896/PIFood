@@ -38,8 +38,8 @@ export default function Creation(){
         img:'', 
     })
 
-console.log(input, 'inputttt')
-console.log(error, 'errrrooorr')
+// console.log(input, 'inputttt')
+// console.log(error, 'errrrooorr')
 
     useEffect(() => {
         dispatch(getTypes())
@@ -187,6 +187,9 @@ console.log(error, 'errrrooorr')
                     <p className={style.pdiets}>{e}</p>
                  </div>
                 )}
+                <h2>{input.name}</h2>
+                <h2>{input.resume}</h2>
+                <h2>{input.healthScore}</h2>
                 </div>
 
     </div>

@@ -9,7 +9,7 @@
     border: 1px solid black;
     border-radius: 0.5rem;
     background-color: rgba(128, 128, 128, 0.479);
-    width: 27rem;
+    width: 31vw;
     height: 1.6rem;
     position: absolute;
     left: -16rem;
@@ -36,7 +36,7 @@
     color: rgb(255, 255, 255, 0.534);
     font-weight: 400;
     position: absolute;
-    right: -11rem;
+    right: -10.5rem;
     height: 1.8rem;
 }
 

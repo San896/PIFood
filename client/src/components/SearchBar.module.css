@@ -9,7 +9,7 @@
     border: 1px solid black;
     border-radius: 0.5rem;
     background-color: rgba(128, 128, 128, 0.479);
-    width: 31vw;
+    width: 32vw;
     height: 1.6rem;
     position: absolute;
     left: -16rem;
@@ -27,7 +27,8 @@
 } 
 
 .btn{
-    display: flex;
+    display: block;
+    position: relative;
     justify-content: center;
     text-align: center;
     border: none;
@@ -36,7 +37,7 @@
     color: rgb(255, 255, 255, 0.534);
     font-weight: 400;
     position: absolute;
-    left: 10vw;
+    left: 11vw;
     height: 1.8rem;
 }
 

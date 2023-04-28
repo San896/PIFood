@@ -133,18 +133,17 @@
 .pag{
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    align-self: center;
-    align-items: center;
+
     position: absolute;
     top: 2.3rem;
     right: 45%;
+    
 }
 
 .cards{
     display: grid;
     grid-template-columns: repeat(5, auto);
-    gap: 1rem;
+    gap: 1.5rem;
     justify-content: center;
     align-items: center;
     text-align: center;

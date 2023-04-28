@@ -12,9 +12,10 @@
     width: 32vw;
     height: 1.6rem;
     position: absolute;
-    left: -16rem;
+    left: -19vw;
     color: white;
 }
+
 .bar::placeholder{
     color: rgba(255, 255, 255, 0.534);
 }
@@ -36,7 +37,7 @@
     background-color: transparent;
     color: rgb(255, 255, 255, 0.534);
     font-weight: 400;
-    position: absolute;
+    /* position: absolute; */
     left: 11vw;
     height: 1.8rem;
 }

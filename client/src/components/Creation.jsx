@@ -90,7 +90,7 @@ export default function Creation(){
     <div className={style.create}>
         <div className={style.containtitle}>
             <Link to='/home'><button className={style.btnback}> Go Back </button></Link>
-            <h1 className={style.title}> Create your own Recipe </h1>
+            <h1 className={style.title}> Create Recipe </h1>
         </div>
 
 
@@ -106,7 +106,7 @@ export default function Creation(){
                 name='name' 
                 required
                 onChange={(e)=>handleChange(e)}/>
-                {error.name && ( <p>{error.name}</p>)}  
+                {error.name && ( <p className={style.p}>{error.name}</p>)}  
                 </div>
             </div>
             
@@ -184,8 +184,8 @@ export default function Creation(){
         <div className={style.divs}>
                     
                 <h1>{input.name}</h1>
-                <h3>{input.resume}</h3>
-                <h3> Hs: {input.healthScore}</h3>
+                <h2>{input.resume}</h2>
+                <h2> {input.healthScore}</h2>
                 <h4>{input.stepByStep}</h4>
                 {/* <img src={input.img} alt=""/> */}
                 {  input.img? <img src={input.img} alt=""/> : ''  }

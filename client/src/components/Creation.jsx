@@ -163,7 +163,7 @@ export default function Creation(){
                 onChange={(e)=>handleChange(e)}/>
                 </div>
             </div>
-            <hr></hr>
+            
 
             <label className={style.labeldiets}>Diets: </label>
             <select className={style.selectdiets} onChange={(e)=> handleSelect(e)}>
@@ -174,7 +174,7 @@ export default function Creation(){
                     }
             </select>
 
-            <hr></hr>
+            
 
             <button className={style.btncreate} type="submit" > Create </button>
         </form>

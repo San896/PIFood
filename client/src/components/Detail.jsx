@@ -74,14 +74,14 @@ function handleDeleteRecipe(){
                 </div>
 
             <div className={style.imgresume}>
+                    <p className={style.resume} dangerouslySetInnerHTML={{__html: theRecipe.resume,}}></p>
+                    <img className={style.img} src={theRecipe.img} alt=" img failed" width='220px' height='220px'/>
                 <div className={style.headers}>
                     <h5> Health Score: {theRecipe.healthScore}</h5>
                     <h5> ID: {theRecipe.id}</h5>
                     <h5> Plate Type: {theRecipe.plateType+''}</h5>
                     <h5> Type of Diets: {theRecipe.diets+''}</h5>
                 </div>
-                    <p className={style.resume} dangerouslySetInnerHTML={{__html: theRecipe.resume,}}></p>
-                    <img className={style.img} src={theRecipe.img} alt=" img failed" width='220px' height='220px'/>
             </div>
                 <div className={style.steps}>
                     <div className={style.stepstep}> Step By Step: {!theRecipe.stepByStep? 'no steps' : theRecipe.stepByStep.map( el => (

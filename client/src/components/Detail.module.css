@@ -37,6 +37,7 @@
     word-wrap: break-word;
     /* left: 55rem;
     top: 7rem; */
+    left: 5vw;
     justify-self: center;
     align-self: center;
    
@@ -44,12 +45,11 @@
 
 .haeaders h5{
     display: flex;
-    margin-top: 0%;
-    margin-bottom: 0%
+    
 }
 .imgresume{
     display: flex;
-    flex-direction: row-reverse;
+    flex-direction: row;
     gap: 30px;
     left: 3rem;
     position: absolute;
@@ -63,7 +63,7 @@
 }
 .img{
     display: flex;
-    left: 1rem;
+    left: 5rem;
     position: relative;
     border-radius: 1rem;
     margin-top: 2rem;
@@ -94,8 +94,8 @@
     display: block;
     position: relative;
     height: fit-content;
-    width: 38vw;
-    
+    width: 45vw;
+    left: 2vw;
     justify-self: center;
     align-self: center;
     

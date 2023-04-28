@@ -37,7 +37,7 @@
     word-wrap: break-word;
     /* left: 55rem;
     top: 7rem; */
-    left: 5vw;
+    left: 3vw;
     justify-self: center;
     align-self: center;
    
@@ -63,7 +63,7 @@
 }
 .img{
     display: flex;
-    left: 5rem;
+    left: 3vw;
     position: relative;
     border-radius: 1rem;
     margin-top: 2rem;
@@ -94,7 +94,7 @@
     display: block;
     position: relative;
     height: fit-content;
-    width: 45vw;
+    width: 48vw;
     left: 2vw;
     justify-self: center;
     align-self: center;

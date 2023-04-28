@@ -12,7 +12,7 @@
     width: 32vw;
     height: 1.6rem;
     position: absolute;
-    left: -19vw;
+    /* left: -19vw; */
     color: white;
 }
 
@@ -30,15 +30,16 @@
 .btn{
     display: block;
     position: relative;
-    justify-content: center;
+    justify-content: flex-end;
     text-align: center;
+
     border: none;
     border-radius: 0.8rem;
     background-color: transparent;
     color: rgb(255, 255, 255, 0.534);
     font-weight: 400;
-    /* position: absolute; */
-    left: 11vw;
+    
+    left:30vw;
     height: 1.8rem;
 }
 
@@ -49,6 +50,11 @@
     color: rgb(221, 221, 221);
 }
 
-.icon{
-    align-self: center;
-}
+/* .icon{
+    display: flex;
+    position: relative;
+    justify-self: flex-end;
+    align-items: flex-end;
+    align-content: flex-end;
+   
+} */

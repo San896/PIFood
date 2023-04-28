@@ -26,7 +26,7 @@
     position: relative;
 
     flex-direction: column;
-    width: 22rem;
+    width: 22vw;
     height: 15rem;
    
     font-weight: 300;
@@ -63,8 +63,8 @@
 }
 .img{
     display: flex;
-    left: 2.5rem;
-    position: absolute;
+    left: 1rem;
+    position: relative;
     border-radius: 1rem;
     margin-top: 2rem;
     
@@ -91,8 +91,10 @@
 
 
 .resume{
+    display: block;
+    position: relative;
     height: fit-content;
-    width: 36rem;
+    width: 38vw;
     
     justify-self: center;
     align-self: center;

@@ -5,8 +5,8 @@
     border: 1px solid black;
     border-radius: 0.5rem;
     
-    height: 14rem;
-    width: 10rem;
+    height:34vh;
+    width: 13vw;
     justify-content: center;
     align-items: center;
     
@@ -34,13 +34,8 @@
     color: rgb(255, 255, 255);
     background-color: rgba(0, 0, 0, 0.808);
      
-    /* background-image: url('../imagenes/madera2.jpg');
-    background-size: cover;
-    background-repeat: no-repeat; */
 
-    
-
-    width: 10rem;
+    width: 13vw;
     height: 4.5rem;
     font-size: smaller;
     font-weight: 400;

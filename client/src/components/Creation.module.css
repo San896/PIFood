@@ -7,7 +7,7 @@
     width: 100%;
     min-height: 100vh;
     min-width: 100vh;
-    background-position: 0px -5rem;
+    /* background-position: 0px -5rem; */
     flex-direction: column;
 }
 .containtitle{
@@ -35,7 +35,7 @@
     height: fit-content;
     text-align: start;
     background-color: rgba(169, 169, 169, 0.404);
-    margin-top: 9rem;
+    margin-top: 13rem;
     
     width: 22vw;
 }
@@ -97,9 +97,9 @@
     background-color: rgba(0, 0, 0, 0.404);
     border: 2px solid rgba(56, 56, 56, 0.658);
     color: white;
-    width: 15vw;
+    width: 14vw;
     font-weight: 400;
-    margin-left: 5rem;
+    margin-left: 4.5rem;
     /* margin-top: 1rem; */
     margin-bottom: 2rem;
     

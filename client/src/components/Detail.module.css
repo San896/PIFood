@@ -27,7 +27,7 @@
 
     flex-direction: column;
     width: 21vw;
-    height: 36vh;
+    height: 38vh;
     
    
     font-weight: 300;
@@ -38,7 +38,7 @@
     word-wrap: break-word;
     /* left: 55rem;
     top: 7rem; */
-    left: 2vw;
+    left: 1vw;
     justify-self: center;
     align-self: center;
    
@@ -56,7 +56,7 @@
     position: absolute;
     border: 2px solid gray;
     border-radius: 1rem;
-    height:18rem;
+    height:48vh;
     width: 92vw;
     background-color: rgba(12, 1, 1, 0.253);
     margin-top: 15px;
@@ -64,10 +64,10 @@
 }
 .img{
     display: flex;
-    left: 3vw;
+    left: 2vw;
     position: relative;
     border-radius: 1rem;
-    margin-top: 2rem;
+    margin-top: 7vh
     
 }
 
@@ -106,7 +106,7 @@
 .steps{
     display: block;
     flex-direction: column;
-    margin-top: 20rem;
+    margin-top: 54vh;
     background-color: rgba(100, 100, 100, 0.514);
 }
 

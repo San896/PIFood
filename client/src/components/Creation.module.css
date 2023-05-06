@@ -66,7 +66,7 @@
 }
 .inputsform:hover{
     
-    width: 15.2rem;
+    width: 19.2vw;
     background-color: rgba(0, 0, 0, 0.514);
     transition: all 0.1s;
 }
@@ -107,7 +107,7 @@
 .selectdiets:hover{
     background-color: rgba(0, 0, 0, 0.877);
     height: 1.7rem;
-    width: 12.2rem;
+    width: 14.2vw;
     transition: all 0.2s;
 }
 .selectdiets:focus{

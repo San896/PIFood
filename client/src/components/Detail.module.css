@@ -160,7 +160,9 @@
     width: 3.5rem;
 }
 .btndelete:hover{
-    background-color: rgba(255, 0, 0, 0.507);
-    height: 3rem;
-    width: 3.8rem;
+    background-color: rgba(255, 0, 0, 0.342);
+    transform: translateY(-1%);
+    
+    transition: all 0.2s;
+    box-shadow: 4px 4px 15px rgba(44, 44, 44, 0.9);
 }

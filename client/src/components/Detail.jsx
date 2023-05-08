@@ -44,21 +44,22 @@ function handleDeleteRecipe(){
              paramId.id.length > 9? (<div>
 
                 <div className={style.divclose}>
-                    <button className={style.btndelete} onClick={ handleDeleteRecipe}>Delete X</button>
+                    <button className={style.btndelete} onClick={ handleDeleteRecipe}>Delete </button>
                 </div>
 
                 <div className={style.containtitle}>
                     <h1 className={style.title}>{theRecipe.name}</h1>
                 </div>
 
-         <div className={style.headers}>  
-                <h3> ID: {theRecipe.id}</h3>
-                <h3>Health Score: {theRecipe.healthScore? theRecipe.healthScore: 'no HS'}</h3>
-                <h3>Types of Diets: {theRecipe.types? theRecipe.types: 'failed'}</h3>
-        </div>    
                 <div className={style.imgresume}>
+                    <p className={style.resume} >Resume: {theRecipe.resume? theRecipe.resume : 'no resume'}</p>
                     <img className={style.img} src={theRecipe.img || imagen2} alt="Img failed" width='220px' height='220px'/>
-                    <h3 className={style.resume} >Resume: {theRecipe.resume? theRecipe.resume : 'no resume'}</h3>
+         <div className={style.headers}>  
+                <h5> ID: {theRecipe.id}</h5>
+                <h5>Health Score: {theRecipe.healthScore? theRecipe.healthScore: 'no HS'}</h5>
+                <h5>Types of Diets: {theRecipe.types? theRecipe.types: 'failed'}</h5>
+        </div>    
+                
                 </div>
 
                     <div className={style.steps}>
@@ -83,6 +84,8 @@ function handleDeleteRecipe(){
                     <h5> Type of Diets: {theRecipe.diets+''}</h5>
                 </div>
             </div>
+
+
                 <div className={style.steps}>
                     <div className={style.stepstep}> Step By Step: {!theRecipe.stepByStep? 'no steps' : theRecipe.stepByStep.map( el => (
                         <div>
